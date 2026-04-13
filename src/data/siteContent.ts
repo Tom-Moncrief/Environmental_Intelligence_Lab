@@ -52,9 +52,18 @@ export const siteContent = {
     text:
       'The layout separates brand text, stage logic, and styling so you can change copy quickly without reworking components. This keeps the site maintainable as the GeoAI project grows.',
   },
+  estimator: {
+    eyebrow: 'Live backend demo',
+    heading: 'Biomass potential estimator',
+    text:
+      'Use this form to generate a score from the backend. It is a simple first interactive element that you can replace later with authentication, saved scenarios, map queries, or model outputs.',
+    buttonLabel: 'Run estimate',
+    resultTitle: 'Backend response',
+    resultHint:
+      'This section is powered by a free serverless API route when deployed on Vercel. If the backend is unavailable, the page falls back to a local calculation so the demo still works.',
+  },
   footer: {
     note: 'GeoAI Biomass Energy Crops | Environmental Intelligence Lab',
     contact: 'Replace this with your email, lab page, or project link.',
   },
 } as const;
-

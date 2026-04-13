@@ -1,4 +1,5 @@
 import { MetricCard } from './components/MetricCard';
+import { PotentialEstimator } from './components/PotentialEstimator';
 import { SectionHeading } from './components/SectionHeading';
 import { StageCard } from './components/StageCard';
 import { siteContent } from './data/siteContent';
@@ -95,6 +96,8 @@ export function App() {
             </article>
           </div>
         </section>
+
+        <PotentialEstimator copy={siteContent.estimator} />
       </main>
 
       <footer className="footer">
@@ -104,4 +107,3 @@ export function App() {
     </div>
   );
 }
-

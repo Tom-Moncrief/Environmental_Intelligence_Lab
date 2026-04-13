@@ -400,10 +400,120 @@ h1 {
   margin: 0;
 }
 
+.section--estimator {
+  padding-bottom: 48px;
+}
+
+.estimator-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.95fr);
+  gap: 18px;
+}
+
+.estimator-card,
+.estimator-result {
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--surface), rgba(7, 17, 29, 0.56));
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.estimator-card {
+  display: grid;
+  gap: 14px;
+}
+
+.estimator-card label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.estimator-card input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: inherit;
+}
+
+.estimator-card input:focus {
+  outline: 2px solid rgba(102, 242, 201, 0.45);
+  outline-offset: 2px;
+}
+
+.estimator-button {
+  margin-top: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.estimator-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.estimator-result__message {
+  margin: 8px 0 16px;
+  color: var(--muted);
+}
+
+.result-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.result-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.result-score strong {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--accent);
+}
+
+.result-score span {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.result-stack p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.result-stack ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--text);
+}
+
+.result-source,
+.result-placeholder {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
 @media (max-width: 980px) {
   .hero,
   .stage-grid,
-  .spotlight-grid {
+  .spotlight-grid,
+  .estimator-grid {
     grid-template-columns: 1fr;
   }
 
@@ -446,4 +556,3 @@ h1 {
     align-items: flex-start;
   }
 }
-
