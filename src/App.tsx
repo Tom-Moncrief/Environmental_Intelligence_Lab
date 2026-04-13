@@ -52,15 +52,37 @@ export function App() {
           </aside>
         </section>
 
-        <section className="section section--research" id="research">
+        <section className="section section--core" id="core-aim">
           <SectionHeading
-            eyebrow={siteContent.research.eyebrow}
-            title={siteContent.research.title}
-            description={siteContent.research.description}
+            eyebrow={siteContent.coreAim.eyebrow}
+            title={siteContent.coreAim.title}
+            description={siteContent.coreAim.text}
+          />
+        </section>
+
+        <section className="section" id="problem">
+          <SectionHeading
+            eyebrow={siteContent.problem.eyebrow}
+            title={siteContent.problem.title}
+            description={siteContent.problem.text}
           />
 
           <div className="research-grid">
-            {siteContent.research.cards.map((card) => (
+            {siteContent.problem.cards.map((card) => (
+              <EditorialCard key={card.title} title={card.title} body={card.body} />
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="objectives">
+          <SectionHeading
+            eyebrow={siteContent.objectives.eyebrow}
+            title={siteContent.objectives.title}
+            description={siteContent.objectives.description}
+          />
+
+          <div className="research-grid research-grid--objectives">
+            {siteContent.objectives.cards.map((card) => (
               <EditorialCard key={card.title} title={card.title} body={card.body} />
             ))}
           </div>
@@ -80,13 +102,29 @@ export function App() {
           </div>
         </section>
 
-        <section className="section section--mission">
+        <section className="section section--mission" id="vision">
           <div className="mission-layout">
             <div>
-              <p className="eyebrow">{siteContent.mission.eyebrow}</p>
-              <h2>{siteContent.mission.title}</h2>
+              <p className="eyebrow">{siteContent.vision.eyebrow}</p>
+              <h2>{siteContent.vision.title}</h2>
             </div>
-            <p className="mission-text">{siteContent.mission.text}</p>
+            <p className="mission-text">{siteContent.vision.text}</p>
+          </div>
+        </section>
+
+        <section className="section" id="outcome">
+          <SectionHeading
+            eyebrow={siteContent.outcome.eyebrow}
+            title={siteContent.outcome.title}
+            description="The project is designed to produce outputs that are directly useful for decarbonisation planning and sustainable biomass strategy."
+          />
+
+          <div className="spotlight-grid">
+            {siteContent.outcome.cards.map((card) => (
+              <article className="spotlight-card" key={card}>
+                <h3>{card}</h3>
+              </article>
+            ))}
           </div>
         </section>
 

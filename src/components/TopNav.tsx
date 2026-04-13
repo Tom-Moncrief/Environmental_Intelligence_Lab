@@ -14,12 +14,13 @@ export function TopNav({ brand }: TopNavProps) {
       </div>
 
       <nav className="topnav" aria-label="Primary">
-        <a href="#research">Research</a>
+        <a href="#core-aim">Aim</a>
+        <a href="#problem">Problem</a>
+        <a href="#objectives">Objectives</a>
         <a href="#pipeline">Pipeline</a>
-        <a href="#interactive">Interactive</a>
-        <a href="#editable-spots">Editables</a>
+        <a href="#vision">Vision</a>
+        <a href="#outcome">Outcome</a>
       </nav>
     </header>
   );
 }
-

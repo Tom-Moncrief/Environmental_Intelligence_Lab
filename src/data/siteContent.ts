@@ -7,35 +7,76 @@ export const siteContent = {
       'A public-facing research site for mapping biomass opportunity with detection, prediction, and potential analysis.',
   },
   hero: {
-    headline: 'GeoAI for biomass energy crops.',
+    headline: 'GeoAI for biomass energy crops in the UK.',
     description:
-      'A research-first website for Environmental Intelligence Lab. The design is intentionally calm, spacious, and easy to edit so you can present the project publicly without losing scientific clarity.',
-    primaryCta: 'Explore the research',
+      'A national-scale research platform for sustainable biomass expansion. The layout is intentionally calm, spacious, and easy to edit so you can present the project publicly without losing scientific clarity.',
+    primaryCta: 'Explore the project',
     secondaryCta: 'Open editable content',
   },
   metrics: [
-    { value: 'Stage 1', label: 'Detection from geospatial and remote sensing signals' },
-    { value: 'Stage 2', label: 'Prediction of biomass growth and crop suitability' },
-    { value: 'Stage 3', label: 'Potential mapping for planning and decision support' },
+    { value: 'National', label: 'Designed to support UK-scale biomass planning' },
+    { value: 'Multimodal', label: 'Satellite, aerial, LiDAR, field, and environmental data' },
+    { value: 'Adaptive', label: 'Built for continuous updates and scenario testing' },
   ],
-  research: {
-    eyebrow: 'Research focus',
-    title: 'From field signals to decision-ready maps',
-    description:
-      'The site mirrors a lab homepage: clear statement of purpose, concise research framing, and a direct path into the project workflow.',
+  coreAim: {
+    eyebrow: 'Core aim',
+    title: 'Develop a national-scale GeoAI system for sustainable biomass expansion',
+    text:
+      'The project uses multimodal data, including satellite, aerial, LiDAR, field, and environmental sources, to guide where biomass energy crops should be expanded across the UK in support of net zero.',
+  },
+  problem: {
+    eyebrow: 'Problem statement',
+    title: 'The UK lacks reliable biomass intelligence at scale',
+    text:
+      'There are no accurate, up-to-date maps of biomass crops, no robust national estimates of biomass yield and carbon storage, and no clear guidance on where new crops should be planted. That evidence gap slows policy, investment, and large-scale deployment.',
     cards: [
       {
-        title: 'Landscape detection',
-        body: 'Locate promising biomass energy crop areas using satellite imagery, environmental variables, and land context.',
+        title: 'Missing maps',
+        body: 'The current picture of existing biomass crops is incomplete and difficult to update.',
       },
       {
-        title: 'Growth prediction',
-        body: 'Estimate crop response, seasonal dynamics, and likely yield using a structured model pipeline.',
+        title: 'Uncertain estimates',
+        body: 'Biomass yield and carbon storage need stronger spatial evidence and consistency.',
       },
       {
-        title: 'Opportunity mapping',
-        body: 'Translate analytics into potential surfaces that support planning, comparison, and communication.',
+        title: 'Limited guidance',
+        body: 'Decision-makers lack clear location guidance for future planting and expansion.',
       },
+    ],
+  },
+  objectives: {
+    eyebrow: 'Three key objectives',
+    title: 'Map, quantify, and optimise',
+    description:
+      'These are the three technical pillars of the project, and they map directly to the GeoAI pipeline shown later on the page.',
+    cards: [
+      {
+        title: '1. Map existing biomass crops',
+        body: 'Identify where miscanthus, willow, and poplar are grown, and understand the environmental conditions they thrive in.',
+      },
+      {
+        title: '2. Quantify biomass and carbon',
+        body: 'Estimate biomass production and carbon sequestration potential across landscapes using modelling methods aligned to AGBD-style tasks.',
+      },
+      {
+        title: '3. Optimise future expansion',
+        body: 'Identify the best locations for new biomass crops while balancing carbon capture, biodiversity, soil health, and economic viability.',
+      },
+    ],
+  },
+  vision: {
+    eyebrow: 'Bigger vision',
+    title: 'An adaptive decision-support system',
+    text:
+      'The long-term goal is a system that continuously updates with new data, simulates what-if scenarios such as climate change, policy shifts, and market changes, and supports policymakers, farmers, and investors.',
+  },
+  outcome: {
+    eyebrow: 'Final outcome',
+    title: 'Turn raw geospatial data into actionable decisions for UK decarbonisation',
+    cards: [
+      'First high-resolution national map of energy crops',
+      'AI models linking environment to yield and carbon',
+      'A planning tool for sustainable biomass deployment',
     ],
   },
   mission: {
