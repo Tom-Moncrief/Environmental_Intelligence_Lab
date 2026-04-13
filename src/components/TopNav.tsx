@@ -1,8 +1,15 @@
-type TopNavProps = {
-  brand: string;
+type NavItem = {
+  href: string;
+  label: string;
+  active?: boolean;
 };
 
-export function TopNav({ brand }: TopNavProps) {
+type TopNavProps = {
+  brand: string;
+  items: NavItem[];
+};
+
+export function TopNav({ brand, items }: TopNavProps) {
   return (
     <header className="topbar topbar--clean">
       <div className="brand-lockup">
@@ -14,12 +21,11 @@ export function TopNav({ brand }: TopNavProps) {
       </div>
 
       <nav className="topnav" aria-label="Primary">
-        <a href="#core-aim">Aim</a>
-        <a href="#problem">Problem</a>
-        <a href="#objectives">Objectives</a>
-        <a href="#pipeline">Pipeline</a>
-        <a href="#vision">Vision</a>
-        <a href="#outcome">Outcome</a>
+        {items.map((item) => (
+          <a key={item.href} href={item.href} className={item.active ? 'topnav__link topnav__link--active' : 'topnav__link'}>
+            {item.label}
+          </a>
+        ))}
       </nav>
     </header>
   );

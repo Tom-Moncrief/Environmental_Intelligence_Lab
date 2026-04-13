@@ -18,6 +18,44 @@ export const siteContent = {
     { value: 'Multimodal', label: 'Satellite, aerial, LiDAR, field, and environmental data' },
     { value: 'Adaptive', label: 'Built for continuous updates and scenario testing' },
   ],
+  pages: {
+    people: {
+      eyebrow: 'The People',
+      title: 'The team behind the project',
+      description:
+        'This page introduces the people leading and supporting the GeoAI biomass energy crops project.',
+      members: [
+        {
+          name: 'Ce Zhang',
+          role: 'Research Fellow and Principle Investigator',
+          about: '',
+        },
+        {
+          name: 'Tom Moncrief',
+          role: 'Research & Innovation Associate',
+          about: '',
+        },
+      ],
+    },
+    research: {
+      eyebrow: 'Research',
+      title: 'Project research',
+      description:
+        'A dedicated space for methods, fieldwork, modelling, and project updates.',
+    },
+    publications: {
+      eyebrow: 'Publications',
+      title: 'Publications and outputs',
+      description:
+        'Add papers, preprints, reports, posters, and talks here as the project grows.',
+    },
+    resources: {
+      eyebrow: 'Resources',
+      title: 'Data, tools, and references',
+      description:
+        'Use this page for datasets, documentation, maps, code repositories, and project materials.',
+    },
+  },
   coreAim: {
     eyebrow: 'Core aim',
     title: 'Develop a national-scale GeoAI system for sustainable biomass expansion',

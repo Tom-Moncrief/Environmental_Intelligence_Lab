@@ -167,6 +167,11 @@ code {
   color: var(--muted);
 }
 
+.topnav__link--active {
+  color: var(--text);
+  background: rgba(15, 23, 32, 0.05);
+}
+
 .topnav a:hover,
 .button:hover {
   transform: translateY(-1px);
@@ -398,6 +403,12 @@ h1 {
   gap: 18px;
 }
 
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 .research-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -476,6 +487,52 @@ h1 {
   height: 6px;
   border-radius: 50%;
   background: var(--accent);
+}
+
+.person-card {
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 22px;
+}
+
+.person-card__header h2 {
+  margin-top: 10px;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.04em;
+}
+
+.person-role {
+  margin: 0;
+  color: var(--accent);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.person-about {
+  display: grid;
+  gap: 10px;
+}
+
+.person-about__label {
+  margin: 0;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.person-about__blank {
+  min-height: 120px;
+  border-radius: 18px;
+  border: 1px dashed rgba(15, 23, 32, 0.16);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .mission-layout {
@@ -628,7 +685,8 @@ h1 {
 
   .research-grid,
   .stage-grid,
-  .spotlight-grid {
+  .spotlight-grid,
+  .people-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -794,7 +852,8 @@ h1 {
 
   .research-grid,
   .stage-grid,
-  .spotlight-grid {
+  .spotlight-grid,
+  .people-grid {
     grid-template-columns: 1fr;
   }
 
