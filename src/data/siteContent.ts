@@ -7,17 +7,43 @@ export const siteContent = {
       'A public-facing research site for mapping biomass opportunity with detection, prediction, and potential analysis.',
   },
   hero: {
-    headline: 'From sensing to strategy for biomass energy crops.',
+    headline: 'GeoAI for biomass energy crops.',
     description:
-      'A futuristic GeoAI platform that turns remote sensing into actionable biomass intelligence. Each section below is intentionally editable so you can rebrand, rewrite, or expand the project without touching the layout.',
-    primaryCta: 'Explore the pipeline',
-    secondaryCta: 'Edit the content file',
+      'A research-first website for Environmental Intelligence Lab. The design is intentionally calm, spacious, and easy to edit so you can present the project publicly without losing scientific clarity.',
+    primaryCta: 'Explore the research',
+    secondaryCta: 'Open editable content',
   },
   metrics: [
     { value: 'Stage 1', label: 'Detection from geospatial and remote sensing signals' },
     { value: 'Stage 2', label: 'Prediction of biomass growth and crop suitability' },
     { value: 'Stage 3', label: 'Potential mapping for planning and decision support' },
   ],
+  research: {
+    eyebrow: 'Research focus',
+    title: 'From field signals to decision-ready maps',
+    description:
+      'The site mirrors a lab homepage: clear statement of purpose, concise research framing, and a direct path into the project workflow.',
+    cards: [
+      {
+        title: 'Landscape detection',
+        body: 'Locate promising biomass energy crop areas using satellite imagery, environmental variables, and land context.',
+      },
+      {
+        title: 'Growth prediction',
+        body: 'Estimate crop response, seasonal dynamics, and likely yield using a structured model pipeline.',
+      },
+      {
+        title: 'Opportunity mapping',
+        body: 'Translate analytics into potential surfaces that support planning, comparison, and communication.',
+      },
+    ],
+  },
+  mission: {
+    eyebrow: 'Why this matters',
+    title: 'A lab site should read like a publication front page',
+    text:
+      'Selva Lab inspired the section flow and academic clarity. Apple inspired the restraint, spacing, and typographic discipline. The result is a clean research narrative with enough personality to feel modern.',
+  },
   stages: [
     {
       step: 'Stage 1',

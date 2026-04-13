@@ -1,7 +1,9 @@
 import { MetricCard } from './components/MetricCard';
+import { EditorialCard } from './components/EditorialCard';
 import { PotentialEstimator } from './components/PotentialEstimator';
 import { SectionHeading } from './components/SectionHeading';
 import { StageCard } from './components/StageCard';
+import { TopNav } from './components/TopNav';
 import { siteContent } from './data/siteContent';
 
 export function App() {
@@ -9,26 +11,15 @@ export function App() {
 
   return (
     <div className="page-shell">
+      <div className="page-gridline" aria-hidden="true" />
       <div className="page-glow page-glow--left" aria-hidden="true" />
       <div className="page-glow page-glow--right" aria-hidden="true" />
 
-      <header className="topbar">
-        <div className="brand-lockup">
-          <span className="brand-mark">{brand.shortName}</span>
-          <div>
-            <p className="brand-name">{brand.name}</p>
-            <p className="brand-tagline">{brand.tagline}</p>
-          </div>
-        </div>
-
-        <a className="topbar-link" href="#pipeline">
-          View pipeline
-        </a>
-      </header>
+      <TopNav brand={brand.name} />
 
       <main>
         <section className="hero">
-          <div className="hero-copy">
+          <div className="hero-copy hero-copy--minimal">
             <p className="eyebrow">{brand.subtitle}</p>
             <h1>{hero.headline}</h1>
             <p className="hero-description">{hero.description}</p>
@@ -43,14 +34,36 @@ export function App() {
             </div>
           </div>
 
-          <aside className="hero-panel" aria-label="Project snapshot">
-            <p className="panel-label">Project Snapshot</p>
+          <aside className="hero-panel hero-panel--editorial" aria-label="Project snapshot">
+            <p className="panel-label">Project snapshot</p>
+            <div className="hero-graphical">
+              <div className="hero-graphical__halo" />
+              <div className="hero-graphical__frame">
+                <span>GeoAI</span>
+                <strong>Biomass intelligence</strong>
+                <p>Detection, prediction, and potential, composed into one public research platform.</p>
+              </div>
+            </div>
             <div className="panel-grid">
               {metrics.map((metric) => (
                 <MetricCard key={metric.value} {...metric} />
               ))}
             </div>
           </aside>
+        </section>
+
+        <section className="section section--research" id="research">
+          <SectionHeading
+            eyebrow={siteContent.research.eyebrow}
+            title={siteContent.research.title}
+            description={siteContent.research.description}
+          />
+
+          <div className="research-grid">
+            {siteContent.research.cards.map((card) => (
+              <EditorialCard key={card.title} title={card.title} body={card.body} />
+            ))}
+          </div>
         </section>
 
         <section className="section" id="pipeline">
@@ -64,6 +77,16 @@ export function App() {
             {stages.map((stage) => (
               <StageCard key={stage.step} {...stage} />
             ))}
+          </div>
+        </section>
+
+        <section className="section section--mission">
+          <div className="mission-layout">
+            <div>
+              <p className="eyebrow">{siteContent.mission.eyebrow}</p>
+              <h2>{siteContent.mission.title}</h2>
+            </div>
+            <p className="mission-text">{siteContent.mission.text}</p>
           </div>
         </section>
 
@@ -97,7 +120,9 @@ export function App() {
           </div>
         </section>
 
-        <PotentialEstimator copy={siteContent.estimator} />
+        <div id="interactive">
+          <PotentialEstimator copy={siteContent.estimator} />
+        </div>
       </main>
 
       <footer className="footer">
