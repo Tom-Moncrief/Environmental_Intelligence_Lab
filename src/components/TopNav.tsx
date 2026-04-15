@@ -6,17 +6,18 @@ type NavItem = {
 
 type TopNavProps = {
   brand: string;
+  tagline: string;
   items: NavItem[];
 };
 
-export function TopNav({ brand, items }: TopNavProps) {
+export function TopNav({ brand, tagline, items }: TopNavProps) {
   return (
     <header className="topbar topbar--clean">
       <div className="brand-lockup">
         <span className="brand-mark brand-mark--clean">EIL</span>
         <div>
           <p className="brand-name">{brand}</p>
-          <p className="brand-tagline">GeoAI research for biomass energy crops</p>
+          <p className="brand-tagline">{tagline}</p>
         </div>
       </div>
 

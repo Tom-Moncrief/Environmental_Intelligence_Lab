@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { EditorialCard } from './components/EditorialCard';
 import { MetricCard } from './components/MetricCard';
 import { PotentialEstimator } from './components/PotentialEstimator';
@@ -20,25 +20,6 @@ function getPageFromHash(): PageKey {
 
 function routeHref(page: PageKey) {
   return page === 'home' ? '#/' : `#/${page}`;
-}
-
-function PageSurface({
-  eyebrow,
-  title,
-  description,
-  children,
-}: {
-  eyebrow: string;
-  title: string;
-  description: string;
-  children?: ReactNode;
-}) {
-  return (
-    <section className="section">
-      <SectionHeading eyebrow={eyebrow} title={title} description={description} />
-      {children}
-    </section>
-  );
 }
 
 export function App() {
@@ -68,17 +49,25 @@ export function App() {
 
   return (
     <div className="page-shell">
-      <div className="page-gridline" aria-hidden="true" />
-      <div className="page-glow page-glow--left" aria-hidden="true" />
-      <div className="page-glow page-glow--right" aria-hidden="true" />
-
-      <TopNav brand={brand.name} items={navItems} />
+      <TopNav brand={brand.name} tagline={brand.tagline} items={navItems} />
 
       <main>
         {page === 'home' && (
           <>
             <section className="hero">
-              <div className="hero-copy hero-copy--minimal">
+              <div className="hero-figure" aria-hidden="true">
+                <div className="hero-figure__globe" />
+                <div className="hero-figure__swath hero-figure__swath--one" />
+                <div className="hero-figure__swath hero-figure__swath--two" />
+                <div className="hero-figure__swath hero-figure__swath--three" />
+                <div className="hero-figure__frame">
+                  <span>Earth observation</span>
+                  <strong>Satellite view of biomass landscapes</strong>
+                  <p>Opaque image-style backdrop for the lab front page.</p>
+                </div>
+              </div>
+
+              <div className="hero-copy">
                 <p className="eyebrow">{brand.subtitle}</p>
                 <h1>{hero.headline}</h1>
                 <p className="hero-description">{hero.description}</p>
@@ -87,23 +76,20 @@ export function App() {
                   <a className="button button--primary" href={routeHref('research')}>
                     {hero.primaryCta}
                   </a>
-                  <a className="button button--secondary" href={routeHref('people')}>
-                    Meet the team
+                  <a className="button button--secondary" href="#editable-spots">
+                    {hero.secondaryCta}
                   </a>
                 </div>
+
+                <ul className="hero-points" aria-label="Project highlights">
+                  <li>National-scale biomass mapping</li>
+                  <li>Remote sensing, field data, and modelling</li>
+                  <li>Public site designed for ongoing updates</li>
+                </ul>
               </div>
 
-              <aside className="hero-panel hero-panel--editorial" aria-label="Project snapshot">
-                <p className="panel-label">Project snapshot</p>
-                <div className="hero-graphical">
-                  <div className="hero-graphical__halo" />
-                  <div className="hero-graphical__frame">
-                    <span>GeoAI</span>
-                    <strong>Biomass intelligence</strong>
-                    <p>Detection, prediction, and potential, composed into one public research platform.</p>
-                  </div>
-                </div>
-                <div className="panel-grid">
+              <aside className="hero-panel" aria-label="Project snapshot">
+                <div className="hero-panel__meta">
                   {metrics.map((metric) => (
                     <MetricCard key={metric.value} {...metric} />
                   ))}
@@ -111,11 +97,13 @@ export function App() {
               </aside>
             </section>
 
-            <PageSurface
-              eyebrow={siteContent.coreAim.eyebrow}
-              title={siteContent.coreAim.title}
-              description={siteContent.coreAim.text}
-            />
+            <section className="section section--lede">
+              <SectionHeading
+                eyebrow={siteContent.coreAim.eyebrow}
+                title={siteContent.coreAim.title}
+                description={siteContent.coreAim.text}
+              />
+            </section>
 
             <section className="section" id="problem">
               <SectionHeading
@@ -124,7 +112,7 @@ export function App() {
                 description={siteContent.problem.text}
               />
 
-              <div className="research-grid">
+              <div className="research-grid research-grid--three">
                 {siteContent.problem.cards.map((card) => (
                   <EditorialCard key={card.title} title={card.title} body={card.body} />
                 ))}
@@ -138,7 +126,7 @@ export function App() {
                 description={siteContent.objectives.description}
               />
 
-              <div className="research-grid research-grid--objectives">
+              <div className="research-grid research-grid--three">
                 {siteContent.objectives.cards.map((card) => (
                   <EditorialCard key={card.title} title={card.title} body={card.body} />
                 ))}
@@ -148,8 +136,8 @@ export function App() {
             <section className="section" id="pipeline">
               <SectionHeading
                 eyebrow="Workflow"
-                title="Three-stage GeoAI pipeline"
-                description="This layout keeps the story simple: detect current biomass assets, predict how they behave, then map their wider potential."
+                title="A three-stage GeoAI pipeline"
+                description="The site keeps the technical story simple: detect current biomass assets, predict how they behave, then map their wider potential."
               />
 
               <div className="stage-grid">
@@ -176,7 +164,7 @@ export function App() {
                 description="The project is designed to produce outputs that are directly useful for decarbonisation planning and sustainable biomass strategy."
               />
 
-              <div className="spotlight-grid">
+              <div className="spotlight-grid spotlight-grid--three">
                 {siteContent.outcome.cards.map((card) => (
                   <article className="spotlight-card" key={card}>
                     <h3>{card}</h3>
@@ -192,7 +180,7 @@ export function App() {
                 description={spotlight.text}
               />
 
-              <div className="spotlight-grid">
+              <div className="spotlight-grid spotlight-grid--three">
                 <article className="spotlight-card">
                   <h3>Branding</h3>
                   <p>
@@ -213,7 +201,7 @@ export function App() {
               </div>
             </section>
 
-            <div id="interactive">
+            <div id="interactive" className="section">
               <PotentialEstimator copy={siteContent.estimator} />
             </div>
           </>
@@ -277,7 +265,7 @@ export function App() {
               description={pages.publications.description}
             />
 
-            <div className="spotlight-grid">
+            <div className="spotlight-grid spotlight-grid--three">
               <article className="spotlight-card">
                 <h3>Publications will appear here</h3>
                 <p>Add journal papers, conference submissions, preprints, and reports as they become available.</p>
@@ -312,7 +300,10 @@ export function App() {
       </main>
 
       <footer className="footer">
-        <p>{footer.note}</p>
+        <div>
+          <p className="footer__label">{brand.name}</p>
+          <p>{footer.note}</p>
+        </div>
         <p>{footer.contact}</p>
       </footer>
     </div>

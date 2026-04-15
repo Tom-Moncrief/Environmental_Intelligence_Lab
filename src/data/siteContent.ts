@@ -4,12 +4,12 @@ export const siteContent = {
     shortName: 'EIL',
     tagline: 'GeoAI for biomass energy crops',
     subtitle:
-      'A public-facing research site for mapping biomass opportunity with detection, prediction, and potential analysis.',
+      'A public research site for mapping biomass opportunity with detection, prediction, and decision support.',
   },
   hero: {
     headline: 'GeoAI for biomass energy crops in the UK.',
     description:
-      'A national-scale research platform for sustainable biomass expansion. The layout is intentionally calm, spacious, and easy to edit so you can present the project publicly without losing scientific clarity.',
+      'A national-scale research platform for sustainable biomass expansion. The site is designed to feel calm, credible, and editorial, with enough structure to present the project clearly to academic and public audiences.',
     primaryCta: 'Explore the project',
     secondaryCta: 'Open editable content',
   },
@@ -27,7 +27,7 @@ export const siteContent = {
       members: [
         {
           name: 'Ce Zhang',
-          role: 'Research Fellow and Principle Investigator',
+          role: 'Research Fellow and Principal Investigator',
           about: '',
         },
         {
@@ -121,7 +121,7 @@ export const siteContent = {
     eyebrow: 'Why this matters',
     title: 'A lab site should read like a publication front page',
     text:
-      'Selva Lab inspired the section flow and academic clarity. Apple inspired the restraint, spacing, and typographic discipline. The result is a clean research narrative with enough personality to feel modern.',
+      'The reference sites shaped this redesign toward restraint, spacing, and editorial clarity. The result is a cleaner research narrative with fewer visual distractions and more room for the work to breathe.',
   },
   stages: [
     {
@@ -168,7 +168,7 @@ export const siteContent = {
       'This section is powered by a free serverless API route when deployed on Vercel. If the backend is unavailable, the page falls back to a local calculation so the demo still works.',
   },
   footer: {
-    note: 'GeoAI Biomass Energy Crops | Environmental Intelligence Lab',
+    note: 'GeoAI biomass energy crops project | Environmental Intelligence Lab',
     contact: 'Replace this with your email, lab page, or project link.',
   },
 } as const;
