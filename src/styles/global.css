@@ -151,24 +151,22 @@ code {
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   gap: 28px;
   align-items: start;
-  padding: 42px 0 24px;
-  min-height: 680px;
+  padding: 48px 0 28px;
+  min-height: 720px;
 }
 
 .hero-figure {
   position: absolute;
-  inset: 22px 0 auto auto;
-  width: min(720px, 72vw);
-  height: min(620px, 62vw);
+  inset: 0;
+  width: 100%;
+  height: min(760px, 76vw);
   border-radius: 34px;
   overflow: hidden;
   border: 1px solid rgba(21, 18, 13, 0.12);
   background:
-    radial-gradient(circle at 18% 18%, rgba(214, 173, 106, 0.82), transparent 0 28%),
-    radial-gradient(circle at 78% 24%, rgba(89, 123, 99, 0.72), transparent 0 18%),
-    radial-gradient(circle at 66% 78%, rgba(143, 108, 58, 0.7), transparent 0 24%),
-    linear-gradient(135deg, #304352 0%, #3f5c5f 28%, #7d8d5a 55%, #c5c0a4 100%);
-  box-shadow: 0 26px 70px rgba(45, 38, 24, 0.16);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.2)),
+    url('/Figures/Homepage.jpg') center center / cover no-repeat;
+  box-shadow: 0 30px 80px rgba(45, 38, 24, 0.18);
 }
 
 .hero-figure::before,
@@ -181,126 +179,15 @@ code {
 
 .hero-figure::before {
   background:
-    linear-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), transparent 54%);
-  background-size: 48px 48px, 48px 48px, auto;
-  mix-blend-mode: screen;
-  opacity: 0.52;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.22)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: auto, 80px 80px, 80px 80px;
+  opacity: 0.9;
 }
 
 .hero-figure::after {
-  background:
-    radial-gradient(circle at 52% 48%, rgba(16, 22, 24, 0) 0 26%, rgba(16, 22, 24, 0.12) 27%, rgba(16, 22, 24, 0.18) 44%, rgba(16, 22, 24, 0.34) 72%, rgba(16, 22, 24, 0.5) 100%),
-    radial-gradient(circle at 28% 35%, rgba(255, 255, 255, 0.28), transparent 16%),
-    radial-gradient(circle at 72% 62%, rgba(255, 255, 255, 0.16), transparent 18%);
-}
-
-.hero-figure__globe {
-  position: absolute;
-  inset: 9% 11%;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 28% 25%, rgba(255, 255, 255, 0.15), transparent 14%),
-    radial-gradient(circle at 72% 68%, rgba(255, 255, 255, 0.14), transparent 16%),
-    linear-gradient(145deg, rgba(28, 44, 51, 0.88), rgba(42, 72, 74, 0.9) 44%, rgba(100, 124, 82, 0.92) 78%, rgba(191, 182, 147, 0.96));
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
-    inset -36px -54px 70px rgba(8, 14, 16, 0.38);
-}
-
-.hero-figure__globe::before,
-.hero-figure__globe::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-}
-
-.hero-figure__globe::before {
-  background:
-    radial-gradient(ellipse at 30% 40%, rgba(229, 220, 180, 0.9) 0 12%, transparent 13%),
-    radial-gradient(ellipse at 52% 58%, rgba(145, 132, 86, 0.92) 0 14%, transparent 15%),
-    radial-gradient(ellipse at 66% 30%, rgba(101, 129, 93, 0.95) 0 12%, transparent 13%),
-    radial-gradient(ellipse at 75% 72%, rgba(68, 104, 85, 0.9) 0 10%, transparent 11%),
-    radial-gradient(ellipse at 18% 78%, rgba(207, 190, 123, 0.9) 0 10%, transparent 11%);
-  opacity: 0.92;
-}
-
-.hero-figure__globe::after {
-  background:
-    linear-gradient(115deg, transparent 0 37%, rgba(255, 255, 255, 0.12) 37% 39%, transparent 39% 100%),
-    linear-gradient(25deg, transparent 0 46%, rgba(255, 255, 255, 0.08) 46% 47%, transparent 47% 100%);
-  mix-blend-mode: screen;
-  opacity: 0.65;
-}
-
-.hero-figure__swath {
-  position: absolute;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
-  opacity: 0.72;
-}
-
-.hero-figure__swath--one {
-  inset: 14% auto auto 7%;
-  width: 33%;
-  height: 13px;
-  transform: rotate(-18deg);
-}
-
-.hero-figure__swath--two {
-  inset: 34% 10% auto auto;
-  width: 28%;
-  height: 11px;
-  transform: rotate(12deg);
-}
-
-.hero-figure__swath--three {
-  inset: auto auto 18% 16%;
-  width: 40%;
-  height: 12px;
-  transform: rotate(-7deg);
-}
-
-.hero-figure__frame {
-  position: absolute;
-  right: 22px;
-  bottom: 22px;
-  max-width: 290px;
-  padding: 16px 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(13, 19, 22, 0.62);
-  color: #fffdf8;
-  backdrop-filter: blur(4px);
-}
-
-.hero-figure__frame span {
-  display: block;
-  margin-bottom: 8px;
-  color: #f2e7cd;
-  font-size: 0.76rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.hero-figure__frame strong {
-  display: block;
-  margin-bottom: 8px;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2rem;
-  line-height: 0.95;
-  font-weight: 600;
-}
-
-.hero-figure__frame p {
-  margin: 0;
-  max-width: 24ch;
-  color: rgba(255, 255, 255, 0.84);
-  line-height: 1.55;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 26%, rgba(253, 251, 247, 0.5) 100%);
 }
 
 .hero-copy,
@@ -318,10 +205,11 @@ code {
 }
 
 .hero-copy {
-  padding: 10px 0 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
+  padding: 26px 28px 28px;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(21, 18, 13, 0.1);
   position: relative;
   z-index: 1;
 }
@@ -409,7 +297,7 @@ h3 {
 }
 
 .button--secondary {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .hero-points {
@@ -425,7 +313,7 @@ h3 {
   padding: 9px 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.54);
+  background: rgba(255, 255, 255, 0.92);
   font-size: 0.94rem;
 }
 
@@ -434,7 +322,7 @@ h3 {
   gap: 18px;
   padding: 18px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(250, 246, 239, 0.96));
+  background: rgba(255, 255, 255, 0.98);
   position: relative;
   z-index: 1;
 }
@@ -447,7 +335,7 @@ h3 {
 .metric-card {
   padding: 16px 18px;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 1);
 }
 
 .metric-card strong {
@@ -802,23 +690,9 @@ h3 {
     gap: 20px;
   }
 
-  .hero-panel__figure {
-    min-height: 260px;
-  }
-
   .hero-figure {
     height: 300px;
     border-radius: 26px;
-  }
-
-  .hero-figure__frame {
-    right: 14px;
-    bottom: 14px;
-    max-width: 220px;
-  }
-
-  .hero-figure__frame strong {
-    font-size: 1.6rem;
   }
 
   .research-grid,

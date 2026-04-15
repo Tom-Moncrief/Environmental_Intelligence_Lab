@@ -1,6 +1,6 @@
 export const siteContent = {
   brand: {
-    name: 'Environmental Intelligence Lab',
+    name: 'Environmental Intelligence Labs',
     shortName: 'EIL',
     tagline: 'GeoAI for biomass energy crops',
     subtitle:

@@ -55,17 +55,7 @@ export function App() {
         {page === 'home' && (
           <>
             <section className="hero">
-              <div className="hero-figure" aria-hidden="true">
-                <div className="hero-figure__globe" />
-                <div className="hero-figure__swath hero-figure__swath--one" />
-                <div className="hero-figure__swath hero-figure__swath--two" />
-                <div className="hero-figure__swath hero-figure__swath--three" />
-                <div className="hero-figure__frame">
-                  <span>Earth observation</span>
-                  <strong>Satellite view of biomass landscapes</strong>
-                  <p>Opaque image-style backdrop for the lab front page.</p>
-                </div>
-              </div>
+              <div className="hero-figure" aria-hidden="true" />
 
               <div className="hero-copy">
                 <p className="eyebrow">{brand.subtitle}</p>
