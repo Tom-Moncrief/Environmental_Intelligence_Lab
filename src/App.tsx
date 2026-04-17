@@ -616,7 +616,6 @@ function PageShell({ palette, eyebrow, title, intro, children }: PageShellProps)
       </section>
 
       <div className="eil-shell eil-page-body">
-        <div className="eil-page-divider" />
         <div className="eil-page-content">{children}</div>
       </div>
     </main>
@@ -644,7 +643,7 @@ function InfoCard({ palette, title, text, tone }: InfoCardProps) {
 const styles = `
   :root {
     color-scheme: light;
-    --bg: #ffffff;
+    --bg: #f3f5f4;
     --paper: rgba(255, 255, 255, 0.94);
     --paper-strong: rgba(255, 255, 255, 0.98);
     --text: #55505c;
@@ -730,17 +729,17 @@ const styles = `
   }
 
   .eil-page-shell {
-    padding: 0 0 24px;
+    padding: 0;
   }
 
   .eil-page-hero {
     position: relative;
     overflow: hidden;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 0;
     background:
       radial-gradient(circle at 12% 16%, rgba(73, 198, 229, 0.1), transparent 28%),
       radial-gradient(circle at 88% 14%, rgba(139, 215, 210, 0.14), transparent 22%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.9));
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.94));
   }
 
   .eil-page-hero__overlay {
@@ -775,13 +774,7 @@ const styles = `
   }
 
   .eil-page-body {
-    padding-top: 24px;
-  }
-
-  .eil-page-divider {
-    height: 1px;
-    background: var(--line);
-    margin-bottom: 24px;
+    padding-top: 0;
   }
 
   .eil-page-content {
@@ -896,10 +889,9 @@ const styles = `
     min-height: min(88vh, 940px);
     display: grid;
     place-items: center;
-    border-radius: 0 0 36px 36px;
     margin: 0 auto 0;
-    border: 1px solid rgba(23, 22, 20, 0.1);
-    box-shadow: var(--shadow);
+    border: 0;
+    box-shadow: none;
   }
 
   .eil-hero__backdrop {
@@ -912,7 +904,7 @@ const styles = `
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.34)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.28)),
       url('/Figures/Homepage.jpg') center center / cover no-repeat;
     transform: scale(1.01);
   }
@@ -922,7 +914,13 @@ const styles = `
     inset: 0;
     background:
       radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.28), transparent 22%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.76) 62%, rgba(255, 255, 255, 0.98));
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.08) 38%,
+        rgba(243, 245, 244, 0.72) 80%,
+        #f3f5f4 100%
+      );
   }
 
   .eil-hero__scanlines {
@@ -1170,9 +1168,9 @@ const styles = `
   }
 
   .eil-join {
-    margin-top: 48px;
-    padding: 26px 0;
-    border-top: 1px solid var(--line);
+    margin-top: 0;
+    padding: 26px 0 0;
+    border-top: 0;
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(73, 198, 229, 0.08)),
       radial-gradient(circle at 18% 20%, rgba(139, 215, 210, 0.1), transparent 26%);
@@ -1245,7 +1243,6 @@ const styles = `
 
     .eil-hero {
       min-height: auto;
-      border-radius: 0 0 28px 28px;
       margin-top: 0;
     }
 
