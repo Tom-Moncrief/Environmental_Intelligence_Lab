@@ -1,882 +1,656 @@
-import { useMemo, useState } from 'react';
+const navLinks = [
+  { href: '#lab', label: 'The Lab' },
+  { href: '#research', label: 'Research' },
+  { href: '#publications', label: 'Publications' },
+  { href: '#resources', label: 'Resources' },
+];
 
-type Palette = {
-  mint: string;
-  teal: string;
-  slate: string;
-  charcoal: string;
-  yellow: string;
-  white: string;
-};
-
-type ResearchProject = {
-  id: string;
-  label: string;
-  title: string;
-  summary: string;
-  focus: string;
-  methods: string;
-  applications: string;
-};
-
-type PageShellProps = {
-  palette: Palette;
-  eyebrow: string;
-  title: string;
-  intro: string;
-  children: React.ReactNode;
-};
-
-type InfoCardProps = {
-  palette: Palette;
-  title: string;
-  text: string;
-  tone: 'mint' | 'teal';
-};
-
-type HomePageProps = {
-  palette: Palette;
-  setCurrentPage: (page: PageName) => void;
-};
-
-type PeoplePageProps = {
-  palette: Palette;
-};
-
-type ResearchPageProps = {
-  palette: Palette;
-  setSelectedResearchId: (id: string | null) => void;
-  setCurrentPage: (page: PageName) => void;
-};
-
-type ResearchDetailPageProps = {
-  palette: Palette;
-  researchId: string | null;
-  setCurrentPage: (page: PageName) => void;
-  setSelectedResearchId: (id: string | null) => void;
-};
-
-type PublicationsPageProps = {
-  palette: Palette;
-};
-
-type InteractiveResourcesPageProps = {
-  palette: Palette;
-};
-
-type PageName = 'Home' | 'People' | 'Research' | 'Research Detail' | 'Publications' | 'Interactive Resources';
-
-const RESEARCH_PROJECTS: ResearchProject[] = [
+const researchThemes = [
   {
-    id: 'research-01',
-    label: 'Research 01',
-    title: 'Using satellite foundation models for biomass estimation and ecosystem monitoring.',
-    summary: 'Using AlphaEarth satellite embeddings to predict and analyse biomass in tropical rainforests.',
-    focus: 'Satellite foundation models, biomass estimation, tropical rainforest monitoring',
-    methods: 'AlphaEarth embeddings, downstream modelling, remote sensing analysis, geospatial AI',
-    applications: 'Biomass prediction, ecosystem monitoring, tropical forest assessment',
+    title: 'Satellite AI',
+    body: 'Foundation models, remote sensing embeddings, and geospatial machine learning for environmental understanding.',
   },
   {
-    id: 'research-02',
-    label: 'Research 02',
-    title: 'Biomass estimation, canopy structure, and ecosystem monitoring',
-    summary:
-      'Investigating how vegetation structure and biomass patterns can be modelled from spatial data across ecosystems.',
-    focus: 'Canopy structure, biomass dynamics, ecosystem condition',
-    methods: 'Remote sensing, structural metrics, environmental modelling',
-    applications: 'Forest condition mapping, ecological monitoring, habitat assessment',
+    title: 'Biomass and ecosystems',
+    body: 'Biomass estimation, canopy structure, forest condition, and ecosystem monitoring across space and time.',
   },
   {
-    id: 'research-03',
-    label: 'Research 03',
-    title: 'Geospatial machine learning for climate and sustainability questions',
-    summary:
-      'Building machine learning workflows that support environmental decision-making across climate and sustainability challenges.',
-    focus: 'Geospatial AI, climate analytics, sustainability science',
-    methods: 'Machine learning, spatial data science, predictive modelling',
-    applications: 'Climate risk analysis, land systems, environmental intelligence',
-  },
-  {
-    id: 'research-04',
-    label: 'Research 04',
-    title: 'Interactive scientific tools for environmental understanding',
-    summary:
-      'Designing digital tools and interactive interfaces that make environmental data easier to explore, explain, and use.',
-    focus: 'Scientific communication, interactive analysis, environmental interfaces',
-    methods: 'Web tools, visual analytics, human-centred research interfaces',
-    applications: 'Public engagement, lab tools, exploratory research platforms',
+    title: 'Earth system change',
+    body: 'Land change, climate analytics, and decision-support tools for environmental research and policy.',
   },
 ];
 
-const MANUAL_TEST_CASES = [
-  'Home page renders by default with the sticky top navigation visible.',
-  'Clicking People shows Dr Ce Zhang as the primary profile and the remaining team cards below.',
-  'Clicking Research shows the research themes page without syntax or render errors.',
-  'Clicking a research card opens its dedicated research detail page.',
-  'Clicking Back to research overview from a research detail page returns to the research grid.',
-  'Clicking Publications shows the publications list without syntax or render errors.',
-  'Clicking Interactive Resources shows the resources cards.',
-  'Clicking the Environmental Intelligence Labs logo returns to Home.',
-  'If a research detail page is opened with no selected id, the first research project is shown as a safe fallback.',
-];
-
-const navItems = [
-  { label: 'People', page: 'People' as const },
-  { label: 'Research', page: 'Research' as const },
-  { label: 'Publications', page: 'Publications' as const },
-  { label: 'Interactive Resources', page: 'Interactive Resources' as const },
+const outputCards = [
+  {
+    title: 'Publications',
+    body: 'Selected papers, preprints, conference talks, and lab outputs presented in a clean editorial format.',
+  },
+  {
+    title: 'Resources',
+    body: 'Datasets, code, methods notes, and visual materials for collaborators and visitors.',
+  },
+  {
+    title: 'Join the lab',
+    body: 'A clear recruitment and contact section for students, researchers, and collaborators.',
+  },
 ];
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState<PageName>('Home');
-  const [selectedResearchId, setSelectedResearchId] = useState<string | null>(null);
-
-  const palette: Palette = {
-    mint: '#D6F8D6',
-    teal: '#7FC6A4',
-    slate: '#5D737E',
-    charcoal: '#55505C',
-    yellow: '#FAF33E',
-    white: '#FFFFFF',
-  };
-
-  const pageTitle = currentPage === 'Home' ? 'Environmental Intelligence Labs' : currentPage;
-
-  const footerNote = useMemo(
-    () => `Manual test cases: ${MANUAL_TEST_CASES.length} checks available for the prototype.`,
-    [],
-  );
-
   return (
-    <div className="min-h-screen" style={{ backgroundColor: palette.mint, color: palette.charcoal }}>
+    <div className="eil-page">
       <style>{styles}</style>
-      <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-          <button
-            onClick={() => setCurrentPage('Home')}
-            className="min-w-0 text-left transition hover:opacity-80"
-            type="button"
-          >
-            <div className="text-[1.05rem] font-semibold leading-none tracking-tight" style={{ color: palette.charcoal }}>
-              Environmental Intelligence
-            </div>
-            <div className="mt-1 text-sm font-medium leading-none" style={{ color: palette.slate }}>
-              Labs
-            </div>
-          </button>
 
-          <nav className="hidden items-center justify-center gap-8 md:flex" aria-label="Primary">
-            {navItems.map((item) => {
-              const active = currentPage === item.page;
-              return (
-                <button
-                  key={item.page}
-                  onClick={() => setCurrentPage(item.page)}
-                  className="text-sm font-medium transition hover:opacity-70"
-                  style={{
-                    color: palette.charcoal,
-                    textDecoration: active ? 'underline' : 'none',
-                    textUnderlineOffset: '8px',
-                  }}
-                  type="button"
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+      <header className="eil-header">
+        <div className="eil-shell eil-header__inner">
+          <a className="eil-brand" href="#top" aria-label="Environmental Intelligence Labs home">
+            <span className="eil-brand__mark">EIL</span>
+            <span className="eil-brand__copy">
+              <strong>Environmental Intelligence Labs</strong>
+              <span>GeoAI, Remote Sensing &amp; Earth System Change</span>
+            </span>
+          </a>
+
+          <nav className="eil-nav" aria-label="Primary">
+            {navLinks.map((item) => (
+              <a key={item.href} href={item.href} className="eil-nav__link">
+                {item.label}
+              </a>
+            ))}
           </nav>
 
-          <div className="md:hidden text-xs font-medium" style={{ color: palette.slate }}>
-            {pageTitle}
-          </div>
+          <a className="eil-cta" href="#join">
+            JOIN THE LAB
+          </a>
         </div>
       </header>
 
-      {currentPage === 'Home' && <HomePage palette={palette} setCurrentPage={setCurrentPage} />}
-      {currentPage === 'People' && <PeoplePage palette={palette} />}
-      {currentPage === 'Research' && (
-        <ResearchPage
-          palette={palette}
-          setSelectedResearchId={setSelectedResearchId}
-          setCurrentPage={setCurrentPage}
-        />
-      )}
-      {currentPage === 'Research Detail' && (
-        <ResearchDetailPage
-          palette={palette}
-          researchId={selectedResearchId}
-          setCurrentPage={setCurrentPage}
-          setSelectedResearchId={setSelectedResearchId}
-        />
-      )}
-      {currentPage === 'Publications' && <PublicationsPage palette={palette} />}
-      {currentPage === 'Interactive Resources' && <InteractiveResourcesPage palette={palette} />}
+      <main>
+        <section id="top" className="eil-hero">
+          <div className="eil-hero__backdrop" aria-hidden="true">
+            <div className="eil-hero__image" />
+            <div className="eil-hero__veil" />
+            <div className="eil-hero__scanlines" />
+          </div>
 
-      <footer className="mx-auto max-w-7xl px-6 pb-8 pt-4 text-xs" style={{ color: palette.slate }}>
-        {footerNote}
-      </footer>
-    </div>
-  );
-}
+          <div className="eil-shell eil-hero__inner">
+            <p className="eil-kicker">Environmental Intelligence Labs</p>
+            <h1>Environmental intelligence for a changing planet</h1>
+            <p className="eil-lede">
+              We develop satellite AI, geospatial modelling, and environmental analytics to understand biomass,
+              ecosystems, and land change across space and time.
+            </p>
 
-function PageShell({ palette, eyebrow, title, intro, children }: PageShellProps) {
-  return (
-    <main className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
-      <div className="max-w-3xl">
-        <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: palette.slate }}>
-          {eyebrow}
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl" style={{ color: palette.charcoal }}>
-          {title}
-        </h1>
-        <p className="mt-6 text-lg leading-8" style={{ color: palette.slate }}>
-          {intro}
-        </p>
-      </div>
-      <div className="mt-14">{children}</div>
-    </main>
-  );
-}
-
-function HomePage({ palette, setCurrentPage }: HomePageProps) {
-  return (
-    <main className="min-h-screen">
-      <section
-        className="hero-shell"
-        style={{
-          borderBottom: `1px solid ${palette.teal}40`,
-          backgroundImage:
-            "linear-gradient(to bottom, rgba(255,255,255,0.42), rgba(255,255,255,0.62)), radial-gradient(circle at 20% 20%, rgba(127,198,164,0.22), transparent 24%), radial-gradient(circle at 75% 25%, rgba(250,243,62,0.12), transparent 20%)",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundColor: palette.mint,
-        }}
-      >
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <div className="space-y-8">
-              <div
-                className="inline-flex items-center rounded-full px-4 py-1.5 text-sm font-medium"
-                style={{
-                  border: `1px solid ${palette.slate}55`,
-                  backgroundColor: `${palette.mint}CC`,
-                  color: palette.slate,
-                }}
-              >
-                Environmental Intelligence Labs
-              </div>
-
-              <div className="space-y-5">
-                <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl" style={{ color: palette.charcoal }}>
-                  Environmental intelligence for a changing planet.
-                </h1>
-                <p className="max-w-2xl text-lg leading-8" style={{ color: palette.slate }}>
-                  We build AI and Earth observation tools to understand ecosystems, monitor environmental change, and
-                  turn complex geospatial data into actionable scientific insight.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={() => setCurrentPage('Research')}
-                  className="rounded-2xl px-5 py-3 text-sm font-medium shadow-sm transition hover:opacity-90"
-                  style={{ backgroundColor: palette.charcoal, color: palette.mint }}
-                  type="button"
-                >
-                  Explore research
-                </button>
-                <button
-                  onClick={() => setCurrentPage('Publications')}
-                  className="rounded-2xl border px-5 py-3 text-sm font-medium transition"
-                  style={{
-                    borderColor: palette.slate,
-                    color: palette.charcoal,
-                    backgroundColor: 'transparent',
-                  }}
-                  type="button"
-                >
-                  View publications
-                </button>
-              </div>
+            <div className="eil-actions">
+              <a className="eil-button eil-button--dark" href="#join">
+                JOIN THE LAB
+              </a>
+              <a className="eil-button eil-button--light" href="#research">
+                Explore research
+              </a>
             </div>
 
-            <div className="relative">
-              <div
-                className="absolute inset-0 rounded-[2rem] blur-3xl"
-                style={{
-                  background: `linear-gradient(135deg, ${palette.teal}66 0%, ${palette.mint} 45%, ${palette.yellow}66 100%)`,
-                }}
-              />
-              <div
-                className="relative overflow-hidden rounded-[2rem] p-6 shadow-xl"
-                style={{
-                  border: `1px solid ${palette.slate}33`,
-                  backgroundColor: 'rgba(255,255,255,0.58)',
-                  backdropFilter: 'blur(10px)',
-                }}
-              >
-                <div className="grid grid-cols-2 gap-4">
-                  <InfoCard palette={palette} title="Focus" text="Remote sensing + AI" tone="mint" />
-                  <InfoCard palette={palette} title="Applications" text="Biodiversity, forests, climate" tone="teal" />
-                  <div
-                    className="col-span-2 rounded-2xl p-5"
-                    style={{
-                      border: `1px solid ${palette.yellow}88`,
-                      backgroundColor: 'rgba(250, 243, 62, 0.22)',
-                    }}
-                  >
-                    <p className="text-sm font-medium" style={{ color: palette.charcoal }}>
-                      Current theme
-                    </p>
-                    <p className="mt-2 text-2xl font-semibold" style={{ color: palette.charcoal }}>
-                      Earth observation for environmental monitoring
-                    </p>
-                    <p className="mt-3 text-sm leading-6" style={{ color: palette.slate }}>
-                      Integrating satellite imagery, geospatial foundation models, and scientific workflows.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ul className="eil-tags" aria-label="Research keywords">
+              <li>Satellite AI</li>
+              <li>GeoAI</li>
+              <li>Remote sensing</li>
+              <li>Land change</li>
+            </ul>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-        <div className="grid gap-12 lg:grid-cols-3">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: palette.slate }}>
-              About
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight" style={{ color: palette.charcoal }}>
-              Research at the intersection of AI, ecology, and geospatial science.
-            </h2>
-          </div>
-          <div className="lg:col-span-2">
-            <p className="text-lg leading-8" style={{ color: palette.slate }}>
-              Environmental Intelligence Labs develops computational methods for understanding the natural world at
-              scale. Our work combines machine learning, remote sensing, environmental data, and scientific reasoning to
-              support monitoring, prediction, and decision-making across ecosystems.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section
-        style={{
-          borderTop: `1px solid ${palette.teal}40`,
-          borderBottom: `1px solid ${palette.teal}40`,
-          backgroundColor: 'rgba(127, 198, 164, 0.10)',
-        }}
-      >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: palette.slate }}>
-              Research themes
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight" style={{ color: palette.charcoal }}>
-              Core areas of the lab
-            </h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {[
-              {
-                title: 'Environmental monitoring',
-                text: 'Tracking ecosystem change across space and time using large-scale data.',
-              },
-              {
-                title: 'Earth observation',
-                text: 'Working with satellite, aerial, and spatial data to derive robust environmental insight.',
-              },
-              {
-                title: 'AI for sustainability',
-                text: 'Designing machine learning systems that support climate and ecological research.',
-              },
-              {
-                title: 'Geospatial modelling',
-                text: 'Building predictive models for biomass, land cover, and environmental dynamics.',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-3xl p-6 shadow-sm"
-                style={{
-                  border: `1px solid ${palette.slate}22`,
-                  backgroundColor: 'rgba(255,255,255,0.6)',
-                }}
-              >
-                <h3 className="text-xl font-semibold" style={{ color: palette.charcoal }}>
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-sm leading-6" style={{ color: palette.slate }}>
-                  {item.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-        <div className="flex items-end justify-between gap-8">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: palette.slate }}>
-              Featured work
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight" style={{ color: palette.charcoal }}>
-              Selected projects
-            </h2>
-          </div>
-        </div>
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {[
-            'Biomass mapping from satellite embeddings',
-            'Monitoring tropical forest change',
-            'Environmental foundation models for Earth data',
-          ].map((project, index) => (
-            <article
-              key={project}
-              className="rounded-3xl p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-              style={{
-                border: `1px solid ${palette.slate}22`,
-                backgroundColor: 'rgba(255,255,255,0.7)',
-              }}
-            >
-              <div
-                className="flex h-12 w-12 items-center justify-center rounded-2xl text-sm font-semibold"
-                style={{ backgroundColor: palette.teal, color: palette.charcoal }}
-              >
-                0{index + 1}
-              </div>
-              <h3 className="mt-6 text-xl font-semibold" style={{ color: palette.charcoal }}>
-                {project}
-              </h3>
-              <p className="mt-3 text-sm leading-6" style={{ color: palette.slate }}>
-                Brief summary text for a lab project, publication cluster, or case study that can be swapped later.
+        <section id="lab" className="eil-section">
+          <div className="eil-shell">
+            <div className="eil-section__head">
+              <p className="eil-kicker">The Lab</p>
+              <h2>Modern academic design with a restrained environmental palette.</h2>
+              <p>
+                The composition is intentionally minimal: white header, black CTA, strong centered hero, and calm
+                editorial spacing inspired by a research lab homepage.
               </p>
-            </article>
-          ))}
-        </div>
-      </section>
+            </div>
 
-      <section style={{ backgroundColor: palette.charcoal, color: palette.mint }}>
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div className="eil-split">
+              <article className="eil-card eil-card--large">
+                <p className="eil-card__eyebrow">Mission</p>
+                <h3>Geospatial AI for understanding environmental change.</h3>
+                <p>
+                  The lab combines remote sensing, machine learning, and scientific modelling to study biomass,
+                  ecosystems, and Earth system change with clarity and rigour.
+                </p>
+              </article>
+
+              <article className="eil-card eil-card--accent">
+                <p className="eil-card__eyebrow">Approach</p>
+                <h3>Scientific, editorial, and easy to scan.</h3>
+                <p>
+                  The layout follows the visual hierarchy of the reference while remaining original and tailored to
+                  Environmental Intelligence Labs.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="research" className="eil-section">
+          <div className="eil-shell">
+            <div className="eil-section__head">
+              <p className="eil-kicker">Research</p>
+              <h2>Three pillars guide the lab.</h2>
+              <p>
+                Each theme is written as a compact, publication-style card to keep the page sharp and disciplined.
+              </p>
+            </div>
+
+            <div className="eil-grid eil-grid--three">
+              {researchThemes.map((item) => (
+                <article className="eil-card" key={item.title}>
+                  <p className="eil-card__eyebrow">Research theme</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="publications" className="eil-section">
+          <div className="eil-shell">
+            <div className="eil-section__head">
+              <p className="eil-kicker">Publications</p>
+              <h2>Outputs, evidence, and academic visibility.</h2>
+              <p>
+                A simple, ordered space for articles, talks, and reports that can grow without changing the layout.
+              </p>
+            </div>
+
+            <div className="eil-grid eil-grid--three">
+              {outputCards.slice(0, 2).map((item) => (
+                <article className="eil-card" key={item.title}>
+                  <p className="eil-card__eyebrow">Lab output</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="resources" className="eil-section">
+          <div className="eil-shell">
+            <div className="eil-section__head">
+              <p className="eil-kicker">Resources</p>
+              <h2>Shared materials for collaborators and visitors.</h2>
+              <p>
+                Datasets, code, and methods can live here while the visual rhythm stays consistent across the page.
+              </p>
+            </div>
+
+            <div className="eil-grid eil-grid--three">
+              {outputCards.map((item) => (
+                <article className="eil-card" key={item.title}>
+                  <p className="eil-card__eyebrow">Resources</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="join" className="eil-join">
+          <div className="eil-shell eil-join__inner">
             <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: `${palette.mint}B3` }}>
-                Join / Contact
+              <p className="eil-kicker">Join the lab</p>
+              <h2>Help shape environmental intelligence for the next decade.</h2>
+              <p>
+                Add your recruitment details, contact link, or application instructions here. The section is designed
+                to read like an academic call to action, not a marketing banner.
               </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-tight">
-                Collaborate with Environmental Intelligence Labs
-              </h2>
             </div>
-            <div>
-              <p className="text-base leading-7" style={{ color: `${palette.mint}D9` }}>
-                We welcome collaborations across environmental science, AI, remote sensing, and geospatial analysis.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-4">
-                <button
-                  onClick={() => setCurrentPage('People')}
-                  className="rounded-2xl px-5 py-3 text-sm font-medium transition hover:opacity-90"
-                  style={{ backgroundColor: palette.yellow, color: palette.charcoal }}
-                  type="button"
-                >
-                  Meet the team
-                </button>
-                <button
-                  onClick={() => setCurrentPage('Interactive Resources')}
-                  className="rounded-2xl border px-5 py-3 text-sm font-medium transition"
-                  style={{ borderColor: palette.teal, color: palette.mint }}
-                  type="button"
-                >
-                  Explore resources
-                </button>
-              </div>
-            </div>
+
+            <a className="eil-button eil-button--dark" href="mailto:hello@environmentalintelligencelabs.org">
+              JOIN THE LAB
+            </a>
           </div>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-function PeoplePage({ palette }: PeoplePageProps) {
-  const primary = {
-    name: 'Dr Ce Zhang',
-    role: 'MSc (ITC), MSc (Soton), PhD (Lancaster)',
-    bio: 'Senior Lecturer in Environmental Data Science at the University of Bristol, specialising in AI-driven geospatial and remote sensing methods to understand and model complex environmental and socio-ecological systems.',
-  };
-
-  const people = [
-    {
-      name: 'Tom Moncrief',
-      role: 'MscR, Postgraduate Researcher',
-      bio: 'Works on geospatial AI, satellite embeddings, biomass mapping, and environmental sensing workflows.',
-    },
-    {
-      name: 'Boyi Li',
-      role: 'PhD Researcher',
-      bio: 'Vision-language models in remote sensing.',
-    },
-    {
-      name: 'James Brock',
-      role: 'PhD Researcher',
-      bio: 'Vision-language models in forest change analysis.',
-    },
-    {
-      name: 'Ziming Wang',
-      role: 'PhD Researcher',
-      bio: 'Flood mapping and modelling using geospatial AI.',
-    },
-    {
-      name: 'Yifan Liang',
-      role: 'PhD Researcher',
-      bio: 'Modelling green space and mental health using Street View imagery.',
-    },
-    {
-      name: 'Holly Liken',
-      role: 'PhD Researcher',
-      bio: 'AI for algal monitoring in freshwater ecosystems.',
-    },
-  ];
-
-  return (
-    <PageShell
-      palette={palette}
-      eyebrow="People"
-      title="The researchers behind the lab"
-      intro="A multidisciplinary team working across AI, ecology, remote sensing, and environmental data science."
-    >
-      <div
-        className="mb-10 rounded-[2rem] p-8 shadow-md"
-        style={{ border: `1px solid ${palette.teal}`, backgroundColor: 'rgba(255,255,255,0.85)' }}
-      >
-        <div className="flex items-start gap-6">
-          <div
-            className="flex h-20 w-20 items-center justify-center rounded-2xl text-xl font-semibold"
-            style={{ backgroundColor: palette.teal, color: palette.charcoal }}
-          >
-            CZ
-          </div>
-          <div>
-            <h2 className="text-2xl font-semibold" style={{ color: palette.charcoal }}>
-              {primary.name}
-            </h2>
-            <p className="mt-1 text-sm font-medium" style={{ color: palette.slate }}>
-              {primary.role}
-            </p>
-            <p className="mt-4 text-base leading-7" style={{ color: palette.slate }}>
-              {primary.bio}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {people.map((person) => (
-          <div
-            key={person.name}
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
-          >
-            <div
-              className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl text-lg font-semibold"
-              style={{ backgroundColor: palette.teal, color: palette.charcoal }}
-            >
-              {person.name
-                .split(' ')
-                .map((part) => part[0])
-                .slice(0, 2)
-                .join('')}
-            </div>
-            <h3 className="text-xl font-semibold" style={{ color: palette.charcoal }}>
-              {person.name}
-            </h3>
-            <p className="mt-2 text-sm font-medium" style={{ color: palette.slate }}>
-              {person.role}
-            </p>
-            <p className="mt-4 text-sm leading-6" style={{ color: palette.slate }}>
-              {person.bio}
-            </p>
-          </div>
-        ))}
-      </div>
-    </PageShell>
-  );
-}
-
-function ResearchPage({ palette, setSelectedResearchId, setCurrentPage }: ResearchPageProps) {
-  return (
-    <PageShell
-      palette={palette}
-      eyebrow="Research"
-      title="Core research directions"
-      intro="The lab develops computational methods that connect rich Earth data with pressing environmental questions."
-    >
-      <div className="grid gap-6 lg:grid-cols-2">
-        {RESEARCH_PROJECTS.map((project) => (
-          <button
-            key={project.id}
-            onClick={() => {
-              setSelectedResearchId(project.id);
-              setCurrentPage('Research Detail');
-            }}
-            className="rounded-[2rem] p-7 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
-            type="button"
-          >
-            <div className="text-sm font-medium" style={{ color: palette.slate }}>
-              {project.label}
-            </div>
-            <h3 className="mt-3 text-2xl font-semibold leading-tight" style={{ color: palette.charcoal }}>
-              {project.title}
-            </h3>
-            <p className="mt-4 text-sm leading-7" style={{ color: palette.slate }}>
-              {project.summary}
-            </p>
-            <div
-              className="mt-6 inline-flex items-center rounded-full px-3 py-1 text-xs font-medium"
-              style={{ backgroundColor: palette.teal, color: palette.charcoal }}
-            >
-              Open project page
-            </div>
-          </button>
-        ))}
-      </div>
-    </PageShell>
-  );
-}
-
-function ResearchDetailPage({
-  palette,
-  researchId,
-  setCurrentPage,
-  setSelectedResearchId,
-}: ResearchDetailPageProps) {
-  const project = RESEARCH_PROJECTS.find((item) => item.id === researchId) ?? RESEARCH_PROJECTS[0];
-
-  return (
-    <PageShell palette={palette} eyebrow={project.label} title={project.title} intro={project.summary}>
-      <div className="space-y-6">
-        <button
-          onClick={() => {
-            setSelectedResearchId(null);
-            setCurrentPage('Research');
-          }}
-          className="rounded-2xl border px-4 py-2 text-sm font-medium transition hover:opacity-80"
-          style={{ borderColor: palette.slate, color: palette.charcoal, backgroundColor: 'rgba(255,255,255,0.7)' }}
-          type="button"
-        >
-          Back to research overview
-        </button>
-
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div
-            className="rounded-[2rem] p-6 shadow-sm lg:col-span-2"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.78)' }}
-          >
-            <h2 className="text-2xl font-semibold" style={{ color: palette.charcoal }}>
-              Project overview
-            </h2>
-            <p className="mt-4 text-base leading-8" style={{ color: palette.slate }}>
-              {project.summary}
-            </p>
-            <p className="mt-4 text-base leading-8" style={{ color: palette.slate }}>
-              This dedicated page can later expand into a full project case study with figures, methods, datasets,
-              collaborators, publications, and interactive outputs.
-            </p>
-          </div>
-
-          <div
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
-          >
-            <h3 className="text-lg font-semibold" style={{ color: palette.charcoal }}>
-              Quick details
-            </h3>
-            <div className="mt-4 space-y-4 text-sm leading-6" style={{ color: palette.slate }}>
-              <div>
-                <span className="block font-medium" style={{ color: palette.charcoal }}>
-                  Focus
-                </span>
-                {project.focus}
-              </div>
-              <div>
-                <span className="block font-medium" style={{ color: palette.charcoal }}>
-                  Methods
-                </span>
-                {project.methods}
-              </div>
-              <div>
-                <span className="block font-medium" style={{ color: palette.charcoal }}>
-                  Applications
-                </span>
-                {project.applications}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
-          >
-            <h3 className="text-xl font-semibold" style={{ color: palette.charcoal }}>
-              Data and modelling
-            </h3>
-            <p className="mt-4 text-sm leading-7" style={{ color: palette.slate }}>
-              This area can describe the data sources, modelling strategy, evaluation approach, and study regions used
-              for the project.
-            </p>
-          </div>
-          <div
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
-          >
-            <h3 className="text-xl font-semibold" style={{ color: palette.charcoal }}>
-              Outputs and impact
-            </h3>
-            <p className="mt-4 text-sm leading-7" style={{ color: palette.slate }}>
-              This area can highlight maps, publications, dashboards, policy relevance, and future directions for the
-              work.
-            </p>
-          </div>
-        </div>
-      </div>
-    </PageShell>
-  );
-}
-
-function PublicationsPage({ palette }: PublicationsPageProps) {
-  const publications = [
-    {
-      year: '2026',
-      title: 'Downstream modelling of satellite embeddings for biomass mapping',
-      venue: 'ISPRS Journal of Photogrammetry and Remote Sensing',
-    },
-    {
-      year: '2025',
-      title: 'Environmental foundation models for geospatial monitoring',
-      venue: 'Remote Sensing of Environment',
-    },
-    {
-      year: '2025',
-      title: 'AI methods for ecosystem-scale Earth observation analysis',
-      venue: 'Nature Communications',
-    },
-  ];
-
-  return (
-    <PageShell
-      palette={palette}
-      eyebrow="Publications"
-      title="Selected papers and outputs"
-      intro="A clean, journal-style overview of publications, preprints, reports, and other scientific outputs."
-    >
-      <div className="space-y-4">
-        {publications.map((paper) => (
-          <article
-            key={paper.title}
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.78)' }}
-          >
-            <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-              <div>
-                <p className="text-sm font-medium" style={{ color: palette.slate }}>
-                  {paper.year}
-                </p>
-                <h3 className="mt-2 text-2xl font-semibold" style={{ color: palette.charcoal }}>
-                  {paper.title}
-                </h3>
-                <p className="mt-3 text-sm leading-6" style={{ color: palette.slate }}>
-                  {paper.venue}
-                </p>
-              </div>
-              <button
-                className="rounded-2xl px-4 py-2 text-sm font-medium"
-                style={{ backgroundColor: palette.yellow, color: palette.charcoal }}
-                type="button"
-              >
-                View paper
-              </button>
-            </div>
-          </article>
-        ))}
-      </div>
-    </PageShell>
-  );
-}
-
-function InteractiveResourcesPage({ palette }: InteractiveResourcesPageProps) {
-  const resources = [
-    {
-      title: 'Interactive biomass explorer',
-      description: 'A future interactive tool for exploring predictions, uncertainty, and landscape variation.',
-    },
-    {
-      title: 'Research visualisations',
-      description: 'Figures, dashboards, and exploratory scientific interfaces for environmental data.',
-    },
-    {
-      title: 'Teaching and lab resources',
-      description: 'Accessible explainers, demos, and material for collaborators, students, and visitors.',
-    },
-  ];
-
-  return (
-    <PageShell
-      palette={palette}
-      eyebrow="Interactive Resources"
-      title="Tools, visualisations, and public-facing resources"
-      intro="A space for interactive scientific communication, exploratory tools, and environmental data experiences."
-    >
-      <div className="grid gap-6 lg:grid-cols-3">
-        {resources.map((resource) => (
-          <div
-            key={resource.title}
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
-          >
-            <div
-              className="mb-5 h-32 rounded-[1.5rem]"
-              style={{
-                background: `linear-gradient(135deg, ${palette.teal}55 0%, ${palette.mint} 65%, ${palette.yellow}70 100%)`,
-              }}
-            />
-            <h3 className="text-xl font-semibold" style={{ color: palette.charcoal }}>
-              {resource.title}
-            </h3>
-            <p className="mt-3 text-sm leading-6" style={{ color: palette.slate }}>
-              {resource.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </PageShell>
-  );
-}
-
-function InfoCard({ palette, title, text, tone }: InfoCardProps) {
-  const backgrounds = {
-    mint: 'rgba(214, 248, 214, 0.75)',
-    teal: 'rgba(127, 198, 164, 0.18)',
-  };
-
-  return (
-    <div className="rounded-2xl p-4" style={{ backgroundColor: backgrounds[tone] }}>
-      <p className="text-sm" style={{ color: palette.slate }}>
-        {title}
-      </p>
-      <p className="mt-2 text-lg font-medium" style={{ color: palette.charcoal }}>
-        {text}
-      </p>
+        </section>
+      </main>
     </div>
   );
 }
 
 const styles = `
-  .hero-shell {
+  :root {
+    color-scheme: light;
+    --bg: #f4efe6;
+    --paper: rgba(255, 255, 255, 0.92);
+    --text: #171614;
+    --muted: #5d574c;
+    --line: rgba(23, 22, 20, 0.12);
+    --line-strong: rgba(23, 22, 20, 0.2);
+    --accent: #4f6547;
+    --earth: #8a6a3d;
+    --shadow: 0 24px 64px rgba(44, 39, 28, 0.1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    color: var(--text);
+    font-family: 'Source Sans 3', Arial, Helvetica, sans-serif;
+    background:
+      radial-gradient(circle at 12% 10%, rgba(79, 101, 71, 0.1), transparent 22%),
+      radial-gradient(circle at 82% 12%, rgba(138, 106, 61, 0.1), transparent 20%),
+      linear-gradient(180deg, #fbf9f4 0%, var(--bg) 56%, #efe7d8 100%);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+
+  h1 {
+    font-size: clamp(3.6rem, 7vw, 7.2rem);
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: clamp(1.55rem, 2.6vw, 2rem);
+    font-weight: 600;
+  }
+
+  p {
+    line-height: 1.75;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  .eil-page {
+    min-height: 100vh;
+  }
+
+  .eil-shell {
+    width: min(100%, 1160px);
+    margin: 0 auto;
+  }
+
+  .eil-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.88));
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eil-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 14px 0 16px;
+  }
+
+  .eil-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .eil-brand__mark {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: linear-gradient(135deg, rgba(79, 101, 71, 0.12), rgba(255, 255, 255, 0.96));
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    flex: none;
+  }
+
+  .eil-brand__copy {
+    display: grid;
+    min-width: 0;
+  }
+
+  .eil-brand__copy strong {
+    font-size: 0.98rem;
+    font-weight: 700;
+  }
+
+  .eil-brand__copy span {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .eil-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .eil-nav__link {
+    padding: 9px 12px;
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    transition: transform 160ms ease, color 160ms ease, background 160ms ease;
+  }
+
+  .eil-nav__link:hover {
+    color: var(--text);
+    background: rgba(79, 101, 71, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .eil-cta,
+  .eil-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+  }
+
+  .eil-cta,
+  .eil-button--dark {
+    background: #111111;
+    color: #ffffff;
+    box-shadow: 0 10px 22px rgba(17, 17, 17, 0.16);
+  }
+
+  .eil-button--light {
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--text);
+  }
+
+  .eil-cta:hover,
+  .eil-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .eil-hero {
     position: relative;
+    overflow: hidden;
+    min-height: min(88vh, 940px);
+    display: grid;
+    place-items: center;
+    border-radius: 36px;
+    margin: 16px auto 0;
+    border: 1px solid rgba(23, 22, 20, 0.1);
+    box-shadow: var(--shadow);
+  }
+
+  .eil-hero__backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .eil-hero__image {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.3)),
+      url('/Figures/Homepage.jpg') center center / cover no-repeat;
+    transform: scale(1.01);
+  }
+
+  .eil-hero__veil {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.18), transparent 22%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.42) 62%, rgba(248, 244, 236, 0.92));
+  }
+
+  .eil-hero__scanlines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.38;
+    background-image:
+      linear-gradient(rgba(23, 22, 20, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(23, 22, 20, 0.06) 1px, transparent 1px);
+    background-size: 82px 82px;
+    mask-image: radial-gradient(circle at center, black 22%, transparent 78%);
+  }
+
+  .eil-hero__inner {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 920px);
+    padding: 34px 24px;
+    text-align: center;
+  }
+
+  .eil-kicker,
+  .eil-card__eyebrow {
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .eil-kicker {
+    margin-bottom: 16px;
+  }
+
+  .eil-hero h1 {
+    max-width: 11ch;
+    margin: 0 auto;
+  }
+
+  .eil-lede {
+    max-width: 62ch;
+    margin: 18px auto 0;
+    color: var(--muted);
+    font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  }
+
+  .eil-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  .eil-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 26px 0 0;
+    list-style: none;
+  }
+
+  .eil-tags li {
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.75);
+    font-size: 0.94rem;
+  }
+
+  .eil-section {
+    padding: 48px 0 0;
+  }
+
+  .eil-section__head {
+    max-width: 760px;
+    margin-bottom: 24px;
+  }
+
+  .eil-section__head h2 {
+    margin-top: 12px;
+  }
+
+  .eil-section__head p:last-child {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 1.04rem;
+    max-width: 70ch;
+  }
+
+  .eil-grid,
+  .eil-split {
+    display: grid;
+    gap: 18px;
+  }
+
+  .eil-grid--three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .eil-split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .eil-card {
+    padding: 22px;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    box-shadow: var(--shadow);
+  }
+
+  .eil-card--accent {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(245, 240, 228, 0.98)),
+      radial-gradient(circle at top right, rgba(79, 101, 71, 0.12), transparent 28%);
+  }
+
+  .eil-card h3 {
+    margin-top: 12px;
+  }
+
+  .eil-card p {
+    margin-top: 12px;
+    color: var(--muted);
+  }
+
+  .eil-join {
+    margin-top: 48px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(243, 238, 228, 0.98)),
+      radial-gradient(circle at 18% 20%, rgba(79, 101, 71, 0.12), transparent 26%);
+  }
+
+  .eil-join__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+  }
+
+  .eil-join h2 {
+    max-width: 12ch;
+    margin-top: 12px;
+  }
+
+  .eil-join p {
+    max-width: 66ch;
+    margin-top: 12px;
+    color: var(--muted);
+  }
+
+  @media (max-width: 1100px) {
+    .eil-header__inner,
+    .eil-join__inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .eil-nav {
+      justify-content: flex-start;
+    }
+
+    .eil-cta {
+      align-self: flex-start;
+    }
+
+    .eil-grid--three,
+    .eil-split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .eil-header {
+      position: static;
+    }
+
+    .eil-header__inner {
+      padding: 12px 0 14px;
+    }
+
+    .eil-hero {
+      min-height: auto;
+      border-radius: 28px;
+      margin-top: 10px;
+    }
+
+    .eil-hero__inner {
+      padding: 18px 16px 28px;
+    }
+
+    .eil-hero h1 {
+      max-width: 12ch;
+    }
+
+    .eil-section {
+      padding-top: 36px;
+    }
+
+    .eil-grid--three,
+    .eil-split {
+      grid-template-columns: 1fr;
+    }
   }
 `;
