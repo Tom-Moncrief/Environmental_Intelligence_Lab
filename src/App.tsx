@@ -371,58 +371,37 @@ function PeoplePage({ palette }: { palette: Palette }) {
       title="The researchers behind the lab"
       intro="A multidisciplinary team working across AI, ecology, remote sensing, and environmental data science."
     >
-      <div
-        className="mb-10 rounded-[2rem] p-8 shadow-md"
-        style={{ border: `1px solid ${palette.teal}`, backgroundColor: 'rgba(255,255,255,0.85)' }}
-      >
-        <div className="flex items-start gap-6">
-          <div
-            className="flex h-20 w-20 items-center justify-center rounded-2xl text-xl font-semibold"
-            style={{ backgroundColor: palette.teal, color: palette.charcoal }}
-          >
+      <div className="eil-feature">
+        <div className="eil-feature__badge">Lead investigator</div>
+        <div className="eil-feature__grid">
+          <div className="eil-feature__mark" aria-hidden="true">
             CZ
           </div>
           <div>
-            <h2 className="text-2xl font-semibold" style={{ color: palette.charcoal }}>
-              {primary.name}
-            </h2>
-            <p className="mt-1 text-sm font-medium" style={{ color: palette.slate }}>
-              {primary.role}
-            </p>
-            <p className="mt-4 text-base leading-7" style={{ color: palette.slate }}>
-              {primary.bio}
-            </p>
+            <h2 className="eil-feature__title">{primary.name}</h2>
+            <p className="eil-feature__meta">{primary.role}</p>
+            <p className="eil-feature__text">{primary.bio}</p>
           </div>
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="eil-grid eil-grid--people">
         {people.map((person) => (
-          <div
+          <article
             key={person.name}
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
+            className="eil-card eil-card--team"
           >
-            <div
-              className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl text-lg font-semibold"
-              style={{ backgroundColor: palette.teal, color: palette.charcoal }}
-            >
+            <div className="eil-card__avatar">
               {person.name
                 .split(' ')
                 .map((part) => part[0])
                 .slice(0, 2)
                 .join('')}
             </div>
-            <h3 className="text-xl font-semibold" style={{ color: palette.charcoal }}>
-              {person.name}
-            </h3>
-            <p className="mt-2 text-sm font-medium" style={{ color: palette.slate }}>
-              {person.role}
-            </p>
-            <p className="mt-4 text-sm leading-6" style={{ color: palette.slate }}>
-              {person.bio}
-            </p>
-          </div>
+            <h3>{person.name}</h3>
+            <p className="eil-card__role">{person.role}</p>
+            <p>{person.bio}</p>
+          </article>
         ))}
       </div>
     </PageShell>
@@ -445,7 +424,7 @@ function ResearchPage({
       title="Core research directions"
       intro="The lab develops computational methods that connect rich Earth data with pressing environmental questions."
     >
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="eil-grid eil-grid--research">
         {RESEARCH_PROJECTS.map((project) => (
           <button
             key={project.id}
@@ -453,23 +432,17 @@ function ResearchPage({
               setSelectedResearchId(project.id);
               setCurrentPage('Research Detail');
             }}
-            className="rounded-[2rem] p-7 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
+            className="eil-card eil-card--research"
             type="button"
           >
-            <div className="text-sm font-medium" style={{ color: palette.slate }}>
+            <div className="eil-card__eyebrow">
               {project.label}
             </div>
-            <h3 className="mt-3 text-2xl font-semibold leading-tight" style={{ color: palette.charcoal }}>
-              {project.title}
-            </h3>
-            <p className="mt-4 text-sm leading-7" style={{ color: palette.slate }}>
+            <h3>{project.title}</h3>
+            <p>
               {project.summary}
             </p>
-            <div
-              className="mt-6 inline-flex items-center rounded-full px-3 py-1 text-xs font-medium"
-              style={{ backgroundColor: palette.teal, color: palette.charcoal }}
-            >
+            <div className="eil-card__pill">
               Open project page
             </div>
           </button>
@@ -507,51 +480,33 @@ function ResearchDetailPage({
           Back to research overview
         </button>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div
-            className="rounded-[2rem] p-6 shadow-sm lg:col-span-2"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.78)' }}
-          >
-            <h2 className="text-2xl font-semibold" style={{ color: palette.charcoal }}>
-              Project overview
-            </h2>
-            <p className="mt-4 text-base leading-8" style={{ color: palette.slate }}>
-              {project.summary}
-            </p>
-            <p className="mt-4 text-base leading-8" style={{ color: palette.slate }}>
+        <div className="eil-grid eil-grid--detail">
+          <article className="eil-card eil-card--detail">
+            <h2>Project overview</h2>
+            <p>{project.summary}</p>
+            <p>
               This dedicated page can later expand into a full project case study with figures, methods, datasets,
               collaborators, publications, and interactive outputs.
             </p>
-          </div>
+          </article>
 
-          <div
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
-          >
-            <h3 className="text-lg font-semibold" style={{ color: palette.charcoal }}>
-              Quick details
-            </h3>
-            <div className="mt-4 space-y-4 text-sm leading-6" style={{ color: palette.slate }}>
+          <aside className="eil-card eil-card--detail">
+            <h3>Quick details</h3>
+            <div className="eil-detail-stack">
               <div>
-                <span className="block font-medium" style={{ color: palette.charcoal }}>
-                  Focus
-                </span>
+                <span>Focus</span>
                 {project.focus}
               </div>
               <div>
-                <span className="block font-medium" style={{ color: palette.charcoal }}>
-                  Methods
-                </span>
+                <span>Methods</span>
                 {project.methods}
               </div>
               <div>
-                <span className="block font-medium" style={{ color: palette.charcoal }}>
-                  Applications
-                </span>
+                <span>Applications</span>
                 {project.applications}
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </PageShell>
@@ -584,30 +539,19 @@ function PublicationsPage({ palette }: { palette: Palette }) {
       title="Selected papers and outputs"
       intro="A clean, journal-style overview of publications, preprints, reports, and other scientific outputs."
     >
-      <div className="space-y-4">
+      <div className="eil-list">
         {publications.map((paper) => (
           <article
             key={paper.title}
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.78)' }}
+            className="eil-card eil-card--list"
           >
-            <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div className="eil-list__row">
               <div>
-                <p className="text-sm font-medium" style={{ color: palette.slate }}>
-                  {paper.year}
-                </p>
-                <h3 className="mt-2 text-2xl font-semibold" style={{ color: palette.charcoal }}>
-                  {paper.title}
-                </h3>
-                <p className="mt-3 text-sm leading-6" style={{ color: palette.slate }}>
-                  {paper.venue}
-                </p>
+                <p className="eil-card__eyebrow">{paper.year}</p>
+                <h3>{paper.title}</h3>
+                <p className="eil-card__meta">{paper.venue}</p>
               </div>
-              <button
-                className="rounded-2xl px-4 py-2 text-sm font-medium"
-                style={{ backgroundColor: palette.yellow, color: palette.charcoal }}
-                type="button"
-              >
+              <button className="eil-card__button" type="button">
                 View paper
               </button>
             </div>
@@ -641,26 +585,18 @@ function InteractiveResourcesPage({ palette }: { palette: Palette }) {
       title="Tools, visualisations, and public-facing resources"
       intro="A space for interactive scientific communication, exploratory tools, and environmental data experiences."
     >
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="eil-grid eil-grid--resources">
         {resources.map((resource) => (
-          <div
+          <article
             key={resource.title}
-            className="rounded-[2rem] p-6 shadow-sm"
-            style={{ border: `1px solid ${palette.slate}22`, backgroundColor: 'rgba(255,255,255,0.72)' }}
+            className="eil-card eil-card--resource"
           >
-            <div
-              className="mb-5 h-32 rounded-[1.5rem]"
-              style={{
-                background: `linear-gradient(135deg, ${palette.teal}55 0%, ${palette.mint} 65%, ${palette.yellow}70 100%)`,
-              }}
-            />
-            <h3 className="text-xl font-semibold" style={{ color: palette.charcoal }}>
-              {resource.title}
-            </h3>
-            <p className="mt-3 text-sm leading-6" style={{ color: palette.slate }}>
+            <div className="eil-resource__figure" aria-hidden="true" />
+            <h3>{resource.title}</h3>
+            <p>
               {resource.description}
             </p>
-          </div>
+          </article>
         ))}
       </div>
     </PageShell>
@@ -669,19 +605,20 @@ function InteractiveResourcesPage({ palette }: { palette: Palette }) {
 
 function PageShell({ palette, eyebrow, title, intro, children }: PageShellProps) {
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
-      <div className="max-w-3xl">
-        <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: palette.slate }}>
-          {eyebrow}
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl" style={{ color: palette.charcoal }}>
-          {title}
-        </h1>
-        <p className="mt-6 text-lg leading-8" style={{ color: palette.slate }}>
-          {intro}
-        </p>
+    <main className="eil-page-shell">
+      <section className="eil-page-hero">
+        <div className="eil-page-hero__overlay" aria-hidden="true" />
+        <div className="eil-shell eil-page-hero__inner">
+          <p className="eil-kicker">{eyebrow}</p>
+          <h1>{title}</h1>
+          <p>{intro}</p>
+        </div>
+      </section>
+
+      <div className="eil-shell eil-page-body">
+        <div className="eil-page-divider" />
+        <div className="eil-page-content">{children}</div>
       </div>
-      <div className="mt-14">{children}</div>
     </main>
   );
 }
@@ -790,6 +727,66 @@ const styles = `
   .eil-shell {
     width: min(100%, 1160px);
     margin: 0 auto;
+  }
+
+  .eil-page-shell {
+    padding: 0 0 24px;
+  }
+
+  .eil-page-hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 12% 16%, rgba(127, 198, 164, 0.2), transparent 28%),
+      radial-gradient(circle at 88% 14%, rgba(250, 243, 62, 0.16), transparent 22%),
+      linear-gradient(180deg, rgba(214, 248, 214, 0.92), rgba(230, 251, 230, 0.72));
+  }
+
+  .eil-page-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(85, 80, 92, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(85, 80, 92, 0.05) 1px, transparent 1px);
+    background-size: 94px 94px;
+    opacity: 0.28;
+    pointer-events: none;
+  }
+
+  .eil-page-hero__inner {
+    position: relative;
+    z-index: 1;
+    padding: 34px 0 36px;
+  }
+
+  .eil-page-hero h1 {
+    max-width: 11ch;
+    margin: 8px 0 0;
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.92;
+  }
+
+  .eil-page-hero p {
+    max-width: 64ch;
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+  }
+
+  .eil-page-body {
+    padding-top: 24px;
+  }
+
+  .eil-page-divider {
+    height: 1px;
+    background: var(--line);
+    margin-bottom: 24px;
+  }
+
+  .eil-page-content {
+    display: grid;
+    gap: 18px;
   }
 
   .eil-header {
@@ -1032,6 +1029,16 @@ const styles = `
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .eil-grid--people {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .eil-grid--research,
+  .eil-grid--detail,
+  .eil-grid--resources {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .eil-card {
     padding: 22px;
     border-radius: 24px;
@@ -1040,10 +1047,117 @@ const styles = `
     box-shadow: var(--shadow);
   }
 
+  .eil-card--team,
+  .eil-card--research,
+  .eil-card--detail,
+  .eil-card--list,
+  .eil-card--resource {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.72)),
+      rgba(127, 198, 164, 0.1);
+  }
+
   .eil-card--accent {
     background:
       linear-gradient(180deg, rgba(127, 198, 164, 0.18), rgba(214, 248, 214, 0.96)),
       radial-gradient(circle at top right, rgba(127, 198, 164, 0.16), transparent 28%);
+  }
+
+  .eil-card--team h3,
+  .eil-card--research h3,
+  .eil-card--detail h2,
+  .eil-card--detail h3,
+  .eil-card--list h3,
+  .eil-card--resource h3 {
+    color: var(--charcoal);
+  }
+
+  .eil-card__avatar {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: rgba(127, 198, 164, 0.2);
+    border: 1px solid rgba(85, 80, 92, 0.12);
+    color: var(--charcoal);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .eil-card__role,
+  .eil-card__meta,
+  .eil-card--detail p,
+  .eil-card--resource p {
+    color: var(--muted);
+  }
+
+  .eil-card__pill,
+  .eil-card__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .eil-card__pill {
+    margin-top: 18px;
+    background: rgba(127, 198, 164, 0.22);
+    color: var(--charcoal);
+  }
+
+  .eil-card__button {
+    background: var(--highlight);
+    color: var(--charcoal);
+    border: 1px solid rgba(85, 80, 92, 0.2);
+    flex: none;
+  }
+
+  .eil-detail-stack {
+    display: grid;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .eil-detail-stack div {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .eil-detail-stack span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--charcoal);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .eil-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .eil-list__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .eil-resource__figure {
+    height: 150px;
+    margin-bottom: 18px;
+    border-radius: 20px;
+    background:
+      linear-gradient(135deg, rgba(127, 198, 164, 0.5) 0%, rgba(214, 248, 214, 0.95) 60%, rgba(250, 243, 62, 0.6) 100%);
   }
 
   .eil-card h3 {
@@ -1098,8 +1212,17 @@ const styles = `
     }
 
     .eil-grid--three,
-    .eil-split {
+    .eil-split,
+    .eil-grid--people,
+    .eil-grid--research,
+    .eil-grid--detail,
+    .eil-grid--resources {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .eil-list__row {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
@@ -1139,7 +1262,11 @@ const styles = `
     }
 
     .eil-grid--three,
-    .eil-split {
+    .eil-split,
+    .eil-grid--people,
+    .eil-grid--research,
+    .eil-grid--detail,
+    .eil-grid--resources {
       grid-template-columns: 1fr;
     }
   }
