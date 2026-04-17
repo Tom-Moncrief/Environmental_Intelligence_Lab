@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 type PageName = 'Home' | 'People' | 'Research' | 'Research Detail' | 'Publications' | 'Interactive Resources';
 
@@ -143,6 +144,7 @@ export function App() {
   return (
     <div className="eil-page">
       <style>{styles}</style>
+      <SpeedInsights />
 
       <header className="eil-header">
         <div className="eil-shell eil-header__inner">
@@ -578,6 +580,27 @@ function InteractiveResourcesPage({ palette }: { palette: Palette }) {
     },
   ];
 
+  const getStartedSteps = [
+    {
+      step: '1',
+      title: 'Install our package',
+      body: 'Start by installing @vercel/speed-insights in your existing project.',
+      code: 'npm i @vercel/speed-insights',
+    },
+    {
+      step: '2',
+      title: 'Add the React component',
+      body: 'Import and use the <SpeedInsights /> React component in your app root or main file.',
+      code: "import { SpeedInsights } from '@vercel/speed-insights/react'\n\n<SpeedInsights />",
+    },
+    {
+      step: '3',
+      title: 'Deploy & Visit your Site',
+      body: 'Deploy your changes and visit the deployment to collect your first data points.',
+      code: 'If data does not appear after 30 seconds, check for content blockers and navigate between pages.',
+    },
+  ];
+
   return (
     <PageShell
       palette={palette}
@@ -598,6 +621,34 @@ function InteractiveResourcesPage({ palette }: { palette: Palette }) {
             </p>
           </article>
         ))}
+      </div>
+
+      <div className="eil-getstarted">
+        <div className="eil-section__head eil-section__head--compact">
+          <p className="eil-kicker">Get Started</p>
+          <h2>To start collecting performance metrics, follow these steps.</h2>
+        </div>
+
+        <div className="eil-grid eil-grid--detail">
+          <article className="eil-card eil-card--detail eil-getstarted__intro">
+            <h3>Vercel Speed Insights</h3>
+            <p>
+              This app uses the React version of Speed Insights, which fits the current Vite React codebase.
+            </p>
+            <pre className="eil-codeblock">{`npm i @vercel/speed-insights`}</pre>
+          </article>
+
+          <div className="eil-grid eil-grid--steps">
+            {getStartedSteps.map((item) => (
+              <article className="eil-card eil-card--detail eil-stepcard" key={item.step}>
+                <p className="eil-card__eyebrow">{item.step}</p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <pre className="eil-codeblock">{item.code}</pre>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
     </PageShell>
   );
@@ -904,7 +955,7 @@ const styles = `
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.28)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.18)),
       url('/Figures/Homepage.jpg') center center / cover no-repeat;
     transform: scale(1.01);
   }
@@ -913,12 +964,13 @@ const styles = `
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.28), transparent 22%),
+      radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.2), transparent 22%),
       linear-gradient(
         to bottom,
-        rgba(255, 255, 255, 0.22) 0%,
-        rgba(255, 255, 255, 0.08) 38%,
-        rgba(243, 245, 244, 0.72) 80%,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.04) 30%,
+        rgba(255, 255, 255, 0.1) 58%,
+        rgba(243, 245, 244, 0.58) 82%,
         #f3f5f4 100%
       );
   }
@@ -1002,6 +1054,10 @@ const styles = `
     margin-bottom: 24px;
   }
 
+  .eil-section__head--compact {
+    margin-bottom: 18px;
+  }
+
   .eil-section__head h2 {
     margin-top: 12px;
   }
@@ -1035,6 +1091,10 @@ const styles = `
   .eil-grid--detail,
   .eil-grid--resources {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .eil-grid--steps {
+    grid-template-columns: 1fr;
   }
 
   .eil-card {
@@ -1115,6 +1175,36 @@ const styles = `
     color: var(--charcoal);
     border: 1px solid rgba(85, 80, 92, 0.2);
     flex: none;
+  }
+
+  .eil-getstarted {
+    margin-top: 18px;
+    padding-top: 6px;
+  }
+
+  .eil-getstarted__intro {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+  }
+
+  .eil-stepcard {
+    display: grid;
+    gap: 10px;
+  }
+
+  .eil-codeblock {
+    margin: 0;
+    padding: 14px 16px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--charcoal);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
 
   .eil-detail-stack {
@@ -1214,7 +1304,8 @@ const styles = `
     .eil-grid--people,
     .eil-grid--research,
     .eil-grid--detail,
-    .eil-grid--resources {
+    .eil-grid--resources,
+    .eil-grid--steps {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -1263,7 +1354,8 @@ const styles = `
     .eil-grid--people,
     .eil-grid--research,
     .eil-grid--detail,
-    .eil-grid--resources {
+    .eil-grid--resources,
+    .eil-grid--steps {
       grid-template-columns: 1fr;
     }
   }
