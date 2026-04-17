@@ -81,7 +81,7 @@ export function App() {
             </p>
 
             <div className="eil-actions">
-              <a className="eil-button eil-button--dark" href="#join">
+              <a className="eil-button eil-button--contact" href="#join">
                 JOIN THE LAB
               </a>
               <a className="eil-button eil-button--light" href="#research">
@@ -208,7 +208,7 @@ export function App() {
               </p>
             </div>
 
-            <a className="eil-button eil-button--dark" href="mailto:hello@environmentalintelligencelabs.org">
+            <a className="eil-button eil-button--contact" href="mailto:hello@environmentalintelligencelabs.org">
               JOIN THE LAB
             </a>
           </div>
@@ -221,15 +221,17 @@ export function App() {
 const styles = `
   :root {
     color-scheme: light;
-    --bg: #f4efe6;
-    --paper: rgba(255, 255, 255, 0.92);
-    --text: #171614;
-    --muted: #5d574c;
-    --line: rgba(23, 22, 20, 0.12);
-    --line-strong: rgba(23, 22, 20, 0.2);
-    --accent: #4f6547;
-    --earth: #8a6a3d;
-    --shadow: 0 24px 64px rgba(44, 39, 28, 0.1);
+    --bg: #d6f8d6;
+    --paper: rgba(127, 198, 164, 0.14);
+    --paper-strong: rgba(127, 198, 164, 0.22);
+    --text: #55505c;
+    --muted: #5d737e;
+    --line: rgba(85, 80, 92, 0.12);
+    --line-strong: rgba(85, 80, 92, 0.2);
+    --accent: #7fc6a4;
+    --charcoal: #55505c;
+    --highlight: #faf33e;
+    --shadow: 0 24px 64px rgba(61, 88, 82, 0.12);
   }
 
   * {
@@ -246,9 +248,9 @@ const styles = `
     color: var(--text);
     font-family: 'Source Sans 3', Arial, Helvetica, sans-serif;
     background:
-      radial-gradient(circle at 12% 10%, rgba(79, 101, 71, 0.1), transparent 22%),
-      radial-gradient(circle at 82% 12%, rgba(138, 106, 61, 0.1), transparent 20%),
-      linear-gradient(180deg, #fbf9f4 0%, var(--bg) 56%, #efe7d8 100%);
+      radial-gradient(circle at 12% 10%, rgba(127, 198, 164, 0.16), transparent 22%),
+      radial-gradient(circle at 82% 12%, rgba(250, 243, 62, 0.14), transparent 20%),
+      linear-gradient(180deg, #e6fbe6 0%, var(--bg) 56%, #c9efc9 100%);
   }
 
   a {
@@ -269,6 +271,7 @@ const styles = `
     font-family: 'Cormorant Garamond', Georgia, serif;
     line-height: 0.95;
     letter-spacing: -0.03em;
+    color: var(--charcoal);
   }
 
   h1 {
@@ -334,8 +337,8 @@ const styles = `
     place-items: center;
     border-radius: 999px;
     border: 1px solid var(--line-strong);
-    background: linear-gradient(135deg, rgba(79, 101, 71, 0.12), rgba(255, 255, 255, 0.96));
-    color: var(--accent);
+    background: linear-gradient(135deg, rgba(127, 198, 164, 0.18), rgba(255, 255, 255, 0.96));
+    color: var(--charcoal);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -375,7 +378,7 @@ const styles = `
 
   .eil-nav__link:hover {
     color: var(--text);
-    background: rgba(79, 101, 71, 0.08);
+    background: rgba(127, 198, 164, 0.18);
     transform: translateY(-1px);
   }
 
@@ -395,15 +398,15 @@ const styles = `
   }
 
   .eil-cta,
-  .eil-button--dark {
-    background: #111111;
-    color: #ffffff;
-    box-shadow: 0 10px 22px rgba(17, 17, 17, 0.16);
+  .eil-button--contact {
+    background: var(--highlight);
+    color: var(--charcoal);
+    box-shadow: 0 10px 22px rgba(85, 80, 92, 0.18);
   }
 
   .eil-button--light {
-    background: rgba(255, 255, 255, 0.82);
-    color: var(--text);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--charcoal);
   }
 
   .eil-cta:hover,
@@ -433,7 +436,7 @@ const styles = `
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.3)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.3)),
       url('/Figures/Homepage.jpg') center center / cover no-repeat;
     transform: scale(1.01);
   }
@@ -442,8 +445,8 @@ const styles = `
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.18), transparent 22%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.42) 62%, rgba(248, 244, 236, 0.92));
+      radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.2), transparent 22%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.48) 62%, rgba(214, 248, 214, 0.94));
   }
 
   .eil-hero__scanlines {
@@ -451,8 +454,8 @@ const styles = `
     inset: 0;
     opacity: 0.38;
     background-image:
-      linear-gradient(rgba(23, 22, 20, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(23, 22, 20, 0.06) 1px, transparent 1px);
+      linear-gradient(rgba(85, 80, 92, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(85, 80, 92, 0.06) 1px, transparent 1px);
     background-size: 82px 82px;
     mask-image: radial-gradient(circle at center, black 22%, transparent 78%);
   }
@@ -467,7 +470,7 @@ const styles = `
 
   .eil-kicker,
   .eil-card__eyebrow {
-    color: var(--accent);
+    color: var(--charcoal);
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -512,7 +515,7 @@ const styles = `
     padding: 9px 12px;
     border: 1px solid var(--line);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.82);
     font-size: 0.94rem;
   }
 
@@ -560,8 +563,8 @@ const styles = `
 
   .eil-card--accent {
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(245, 240, 228, 0.98)),
-      radial-gradient(circle at top right, rgba(79, 101, 71, 0.12), transparent 28%);
+      linear-gradient(180deg, rgba(127, 198, 164, 0.18), rgba(214, 248, 214, 0.96)),
+      radial-gradient(circle at top right, rgba(127, 198, 164, 0.16), transparent 28%);
   }
 
   .eil-card h3 {
@@ -578,8 +581,8 @@ const styles = `
     padding: 26px 0;
     border-top: 1px solid var(--line);
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(243, 238, 228, 0.98)),
-      radial-gradient(circle at 18% 20%, rgba(79, 101, 71, 0.12), transparent 26%);
+      linear-gradient(135deg, rgba(127, 198, 164, 0.16), rgba(214, 248, 214, 0.96)),
+      radial-gradient(circle at 18% 20%, rgba(127, 198, 164, 0.14), transparent 26%);
   }
 
   .eil-join__inner {
