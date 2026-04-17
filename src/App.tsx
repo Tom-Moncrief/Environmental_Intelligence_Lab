@@ -644,17 +644,17 @@ function InfoCard({ palette, title, text, tone }: InfoCardProps) {
 const styles = `
   :root {
     color-scheme: light;
-    --bg: #d6f8d6;
-    --paper: rgba(127, 198, 164, 0.14);
-    --paper-strong: rgba(127, 198, 164, 0.22);
+    --bg: #ffffff;
+    --paper: rgba(255, 255, 255, 0.94);
+    --paper-strong: rgba(255, 255, 255, 0.98);
     --text: #55505c;
     --muted: #5d737e;
-    --line: rgba(85, 80, 92, 0.12);
-    --line-strong: rgba(85, 80, 92, 0.2);
-    --accent: #7fc6a4;
+    --line: rgba(93, 115, 126, 0.14);
+    --line-strong: rgba(93, 115, 126, 0.24);
+    --accent: #49c6e5;
     --charcoal: #55505c;
-    --highlight: #faf33e;
-    --shadow: 0 24px 64px rgba(61, 88, 82, 0.12);
+    --highlight: #00bd9d;
+    --shadow: 0 24px 64px rgba(80, 118, 130, 0.12);
   }
 
   * {
@@ -671,9 +671,9 @@ const styles = `
     color: var(--text);
     font-family: 'Source Sans 3', Arial, Helvetica, sans-serif;
     background:
-      radial-gradient(circle at 12% 10%, rgba(127, 198, 164, 0.16), transparent 22%),
-      radial-gradient(circle at 82% 12%, rgba(250, 243, 62, 0.14), transparent 20%),
-      linear-gradient(180deg, #e6fbe6 0%, var(--bg) 56%, #c9efc9 100%);
+      radial-gradient(circle at 12% 10%, rgba(73, 198, 229, 0.08), transparent 22%),
+      radial-gradient(circle at 82% 12%, rgba(0, 189, 157, 0.06), transparent 20%),
+      linear-gradient(180deg, #ffffff 0%, var(--bg) 56%, #ffffff 100%);
   }
 
   a {
@@ -738,9 +738,9 @@ const styles = `
     overflow: hidden;
     border-bottom: 1px solid var(--line);
     background:
-      radial-gradient(circle at 12% 16%, rgba(127, 198, 164, 0.2), transparent 28%),
-      radial-gradient(circle at 88% 14%, rgba(250, 243, 62, 0.16), transparent 22%),
-      linear-gradient(180deg, rgba(214, 248, 214, 0.92), rgba(230, 251, 230, 0.72));
+      radial-gradient(circle at 12% 16%, rgba(73, 198, 229, 0.1), transparent 28%),
+      radial-gradient(circle at 88% 14%, rgba(139, 215, 210, 0.14), transparent 22%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.9));
   }
 
   .eil-page-hero__overlay {
@@ -847,7 +847,7 @@ const styles = `
   .eil-nav__link--active,
   .eil-nav__link:hover {
     color: var(--charcoal);
-    background: rgba(127, 198, 164, 0.18);
+    background: rgba(73, 198, 229, 0.18);
     transform: translateY(-1px);
   }
 
@@ -912,7 +912,7 @@ const styles = `
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.3)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.34)),
       url('/Figures/Homepage.jpg') center center / cover no-repeat;
     transform: scale(1.01);
   }
@@ -921,8 +921,8 @@ const styles = `
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.2), transparent 22%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.48) 62%, rgba(214, 248, 214, 0.94));
+      radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.28), transparent 22%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.76) 62%, rgba(255, 255, 255, 0.98));
   }
 
   .eil-hero__scanlines {
@@ -991,7 +991,7 @@ const styles = `
     padding: 9px 12px;
     border: 1px solid var(--line);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.9);
     font-size: 0.94rem;
   }
 
@@ -1054,13 +1054,13 @@ const styles = `
   .eil-card--resource {
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.72)),
-      rgba(127, 198, 164, 0.1);
+      rgba(73, 198, 229, 0.08);
   }
 
   .eil-card--accent {
     background:
-      linear-gradient(180deg, rgba(127, 198, 164, 0.18), rgba(214, 248, 214, 0.96)),
-      radial-gradient(circle at top right, rgba(127, 198, 164, 0.16), transparent 28%);
+      linear-gradient(180deg, rgba(73, 198, 229, 0.12), rgba(255, 255, 255, 0.96)),
+      radial-gradient(circle at top right, rgba(0, 189, 157, 0.14), transparent 28%);
   }
 
   .eil-card--team h3,
@@ -1078,8 +1078,8 @@ const styles = `
     display: grid;
     place-items: center;
     border-radius: 18px;
-    background: rgba(127, 198, 164, 0.2);
-    border: 1px solid rgba(85, 80, 92, 0.12);
+    background: rgba(139, 215, 210, 0.24);
+    border: 1px solid rgba(73, 198, 229, 0.18);
     color: var(--charcoal);
     font-size: 1.05rem;
     font-weight: 700;
@@ -1108,7 +1108,7 @@ const styles = `
 
   .eil-card__pill {
     margin-top: 18px;
-    background: rgba(127, 198, 164, 0.22);
+    background: rgba(73, 198, 229, 0.2);
     color: var(--charcoal);
   }
 
@@ -1157,7 +1157,7 @@ const styles = `
     margin-bottom: 18px;
     border-radius: 20px;
     background:
-      linear-gradient(135deg, rgba(127, 198, 164, 0.5) 0%, rgba(214, 248, 214, 0.95) 60%, rgba(250, 243, 62, 0.6) 100%);
+      linear-gradient(135deg, rgba(73, 198, 229, 0.58) 0%, rgba(84, 222, 253, 0.92) 50%, rgba(0, 189, 157, 0.64) 100%);
   }
 
   .eil-card h3 {
@@ -1174,8 +1174,8 @@ const styles = `
     padding: 26px 0;
     border-top: 1px solid var(--line);
     background:
-      linear-gradient(135deg, rgba(127, 198, 164, 0.16), rgba(214, 248, 214, 0.96)),
-      radial-gradient(circle at 18% 20%, rgba(127, 198, 164, 0.14), transparent 26%);
+      linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(73, 198, 229, 0.08)),
+      radial-gradient(circle at 18% 20%, rgba(139, 215, 210, 0.1), transparent 26%);
   }
 
   .eil-join__inner {
