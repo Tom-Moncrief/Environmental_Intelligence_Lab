@@ -149,6 +149,12 @@ export function App() {
       <header className="eil-header">
         <div className="eil-shell eil-header__inner">
           <a className="eil-brand" href={routeHref('Home')} aria-label="Environmental Intelligence Labs home">
+            <img
+              className="eil-brand__logo"
+              src="/Figures/Environmental_intelligence_labs_logo.png"
+              alt=""
+              aria-hidden="true"
+            />
             <span className="eil-brand__copy">
               <strong>Environmental Intelligence</strong>
               <span>Labs</span>
@@ -190,6 +196,8 @@ export function App() {
       )}
       {currentPage === 'Publications' && <PublicationsPage palette={palette} />}
       {currentPage === 'Interactive Resources' && <InteractiveResourcesPage palette={palette} />}
+
+      <SiteFooter />
     </div>
   );
 }
@@ -306,22 +314,6 @@ function HomePage({ palette }: { palette: Palette }) {
         </div>
       </section>
 
-      <section id="join" className="eil-join">
-        <div className="eil-shell eil-join__inner">
-          <div>
-            <p className="eil-kicker">Join the lab</p>
-            <h2>Help shape environmental intelligence for the next decade.</h2>
-            <p>
-              Add your recruitment details, contact link, or application instructions here. The section is designed to
-              read like an academic call to action, not a marketing banner.
-            </p>
-          </div>
-
-          <a className="eil-button eil-button--contact" href="mailto:hello@environmentalintelligencelabs.org">
-            JOIN THE LAB
-          </a>
-        </div>
-      </section>
     </main>
   );
 }
@@ -769,6 +761,40 @@ function PageShell({ palette, eyebrow, title, intro, children }: PageShellProps)
   );
 }
 
+function SiteFooter() {
+  return (
+    <footer className="eil-footer" aria-label="Site footer">
+      <div className="eil-shell eil-footer__inner">
+        <div className="eil-footer__brand">
+          <p className="eil-kicker">Environmental Intelligence Labs</p>
+          <h2>Contact the lab</h2>
+          <p>
+            Environmental Intelligence Labs, University of Bristol, Bristol, UK.
+          </p>
+        </div>
+
+        <div className="eil-footer__contact">
+          <div>
+            <span>Email</span>
+            <a href="mailto:hello@environmentalintelligencelabs.org">hello@environmentalintelligencelabs.org</a>
+          </div>
+          <div>
+            <span>Research areas</span>
+            <p>GeoAI, biomass mapping, remote sensing, and environmental data science.</p>
+          </div>
+        </div>
+
+        <div className="eil-footer__links">
+          <a href="#/people">People</a>
+          <a href="#/research">Research</a>
+          <a href="#/publications">Publications</a>
+          <a href="#/resources">Interactive Resources</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 function InfoCard({ palette, title, text, tone }: InfoCardProps) {
   const backgrounds = {
     mint: 'rgba(214, 248, 214, 0.75)',
@@ -949,7 +975,15 @@ const styles = `
   .eil-brand {
     display: inline-flex;
     align-items: center;
+    gap: 12px;
     min-width: 0;
+  }
+
+  .eil-brand__logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex: none;
   }
 
   .eil-brand__copy {
@@ -1432,36 +1466,67 @@ const styles = `
     gap: 12px;
   }
 
-  .eil-join {
-    margin-top: 0;
-    padding: 26px 0 0;
-    border-top: 0;
+  .eil-footer {
+    margin-top: 30px;
+    padding: 26px 0 34px;
+    border-top: 1px solid var(--line);
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(73, 198, 229, 0.08)),
-      radial-gradient(circle at 18% 20%, rgba(139, 215, 210, 0.1), transparent 26%);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.94)),
+      radial-gradient(circle at 18% 20%, rgba(139, 215, 210, 0.08), transparent 26%);
   }
 
-  .eil-join__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 22px;
+  .eil-footer__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: start;
   }
 
-  .eil-join h2 {
-    max-width: 12ch;
+  .eil-footer__brand h2 {
+    max-width: 11ch;
     margin-top: 12px;
   }
 
-  .eil-join p {
-    max-width: 66ch;
-    margin-top: 12px;
+  .eil-footer__brand p,
+  .eil-footer__contact p {
+    margin-top: 10px;
     color: var(--muted);
+    max-width: 48ch;
+  }
+
+  .eil-footer__contact {
+    display: grid;
+    gap: 16px;
+  }
+
+  .eil-footer__contact span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--charcoal);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .eil-footer__contact a {
+    color: var(--charcoal);
+    font-weight: 600;
+  }
+
+  .eil-footer__links {
+    display: grid;
+    gap: 10px;
+    justify-items: end;
+  }
+
+  .eil-footer__links a {
+    color: var(--muted);
+    font-weight: 600;
   }
 
   @media (max-width: 1100px) {
-    .eil-header__inner,
-    .eil-join__inner {
+    .eil-header__inner {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -1492,6 +1557,14 @@ const styles = `
       flex-direction: column;
       align-items: flex-start;
     }
+
+    .eil-footer__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .eil-footer__links {
+      justify-items: start;
+    }
   }
 
   @media (max-width: 760px) {
@@ -1501,6 +1574,11 @@ const styles = `
 
     .eil-header__inner {
       padding: 12px 0 14px;
+    }
+
+    .eil-brand__logo {
+      width: 34px;
+      height: 34px;
     }
 
     .eil-nav {
@@ -1540,6 +1618,15 @@ const styles = `
     .eil-grid--resources,
     .eil-grid--steps {
       grid-template-columns: 1fr;
+    }
+
+    .eil-footer {
+      margin-top: 24px;
+      padding-bottom: 28px;
+    }
+
+    .eil-footer__inner {
+      gap: 18px;
     }
   }
 `;
