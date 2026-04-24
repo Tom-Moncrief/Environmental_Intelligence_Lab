@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import logoUrl from '../Figures/Environmental_intelligence_labs_logo.png';
 
 type PageName = 'Home' | 'People' | 'Research' | 'Research Detail' | 'Publications' | 'Interactive Resources';
 
@@ -151,7 +152,7 @@ export function App() {
           <a className="eil-brand" href={routeHref('Home')} aria-label="Environmental Intelligence Labs home">
             <img
               className="eil-brand__logo"
-              src="/Figures/Environmental_intelligence_labs_logo.png"
+              src={logoUrl}
               alt=""
               aria-hidden="true"
             />
@@ -853,6 +854,11 @@ const styles = `
     text-decoration: none;
   }
 
+  :focus-visible {
+    outline: 2px solid rgba(0, 189, 157, 0.8);
+    outline-offset: 3px;
+  }
+
   h1,
   h2,
   h3,
@@ -867,6 +873,7 @@ const styles = `
     line-height: 0.95;
     letter-spacing: -0.03em;
     color: var(--charcoal);
+    text-wrap: balance;
   }
 
   h1 {
@@ -977,6 +984,7 @@ const styles = `
     align-items: center;
     gap: 12px;
     min-width: 0;
+    transition: transform 160ms ease, opacity 160ms ease;
   }
 
   .eil-brand__logo {
@@ -1242,6 +1250,18 @@ const styles = `
     border: 1px solid var(--line);
     background: var(--paper);
     box-shadow: var(--shadow);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease,
+      background 180ms ease;
+  }
+
+  .eil-card:hover,
+  .eil-card:focus-within {
+    transform: translateY(-2px);
+    border-color: var(--line-strong);
+    box-shadow: 0 28px 64px rgba(59, 46, 23, 0.12);
   }
 
   .eil-card--team,
@@ -1326,6 +1346,11 @@ const styles = `
     color: var(--charcoal);
     border: 1px solid rgba(85, 80, 92, 0.2);
     flex: none;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  }
+
+  .eil-card__button:hover {
+    transform: translateY(-1px);
   }
 
   .eil-getstarted {
