@@ -966,18 +966,25 @@ const styles = `
     border-bottom: 1px solid var(--line);
   }
 
+  .eil-header .eil-shell {
+    width: 100%;
+    max-width: none;
+    padding-left: 14px;
+    padding-right: 18px;
+  }
+
   .eil-header__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    padding: 14px 0 16px;
+    padding: 10px 0 12px;
   }
 
   .eil-brand {
     display: block;
-    flex: 1 1 520px;
-    max-width: min(640px, 62vw);
+    flex: 0 1 auto;
+    max-width: min(560px, 56vw);
     min-width: 0;
     transition: transform 160ms ease, opacity 160ms ease;
   }
@@ -985,9 +992,9 @@ const styles = `
   .eil-brand__logo {
     display: block;
     width: 100%;
-    height: 96px;
+    height: 84px;
     object-fit: cover;
-    object-position: left center;
+    object-position: left top;
     flex: none;
   }
 
@@ -1578,11 +1585,16 @@ const styles = `
     }
 
     .eil-header__inner {
-      padding: 12px 0 14px;
+      padding: 8px 0 10px;
+    }
+
+    .eil-header .eil-shell {
+      padding-left: 10px;
+      padding-right: 12px;
     }
 
     .eil-brand__logo {
-      height: 72px;
+      height: 66px;
       max-width: 100%;
     }
 
