@@ -975,17 +975,19 @@ const styles = `
   }
 
   .eil-brand {
-    display: inline-flex;
-    align-items: center;
+    display: block;
+    flex: 1 1 520px;
+    max-width: min(640px, 62vw);
     min-width: 0;
     transition: transform 160ms ease, opacity 160ms ease;
   }
 
   .eil-brand__logo {
-    width: auto;
-    height: 46px;
-    max-width: min(360px, 52vw);
-    object-fit: contain;
+    display: block;
+    width: 100%;
+    height: 96px;
+    object-fit: cover;
+    object-position: left center;
     flex: none;
   }
 
@@ -1580,8 +1582,8 @@ const styles = `
     }
 
     .eil-brand__logo {
-      height: 38px;
-      max-width: min(300px, 68vw);
+      height: 72px;
+      max-width: 100%;
     }
 
     .eil-nav {
