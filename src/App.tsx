@@ -153,13 +153,8 @@ export function App() {
             <img
               className="eil-brand__logo"
               src={logoUrl}
-              alt=""
-              aria-hidden="true"
+              alt="Environmental Intelligence Labs"
             />
-            <span className="eil-brand__copy">
-              <strong>Environmental Intelligence</strong>
-              <span>Labs</span>
-            </span>
           </a>
 
           <nav className="eil-nav" aria-label="Primary">
@@ -982,33 +977,16 @@ const styles = `
   .eil-brand {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
     min-width: 0;
     transition: transform 160ms ease, opacity 160ms ease;
   }
 
   .eil-brand__logo {
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: 46px;
+    max-width: min(360px, 52vw);
     object-fit: contain;
     flex: none;
-  }
-
-  .eil-brand__copy {
-    display: grid;
-    min-width: 0;
-    line-height: 1.05;
-  }
-
-  .eil-brand__copy strong {
-    font-size: 0.98rem;
-    font-weight: 700;
-  }
-
-  .eil-brand__copy span {
-    margin-top: 3px;
-    color: var(--muted);
-    font-size: 0.9rem;
   }
 
   .eil-nav {
@@ -1602,8 +1580,8 @@ const styles = `
     }
 
     .eil-brand__logo {
-      width: 34px;
-      height: 34px;
+      height: 38px;
+      max-width: min(300px, 68vw);
     }
 
     .eil-nav {
