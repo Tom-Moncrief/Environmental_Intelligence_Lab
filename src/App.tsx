@@ -333,36 +333,48 @@ function PeoplePage({ palette }: { palette: Palette }) {
     bio: 'Senior Lecturer in Environmental Data Science at the University of Bristol, specialising in AI-driven geospatial and remote sensing methods to understand and model complex environmental and socio-ecological systems.',
   };
 
+  const teamNotes = [
+    'Remote sensing and geospatial AI',
+    'Biomass, ecosystems, and land change',
+    'Methods that can be published, reused, and explained',
+  ];
+
   const people = [
     {
       name: 'Tom Moncrief',
       role: 'MscR, Postgraduate Researcher',
-      bio: 'Works on geospatial AI, satellite embeddings, biomass mapping, and environmental sensing workflows.',
+      focus: 'Geospatial AI and biomass mapping',
+      bio: 'Works on satellite embeddings, biomass mapping, and environmental sensing workflows.',
     },
     {
       name: 'Boyi Li',
       role: 'PhD Researcher',
-      bio: 'Vision-language models in remote sensing.',
+      focus: 'Vision-language models',
+      bio: 'Develops vision-language approaches for remote sensing interpretation.',
     },
     {
       name: 'James Brock',
       role: 'PhD Researcher',
-      bio: 'Vision-language models in forest change analysis.',
+      focus: 'Forest change analysis',
+      bio: 'Studies how vision-language models can support forest change analysis.',
     },
     {
       name: 'Ziming Wang',
       role: 'PhD Researcher',
-      bio: 'Flood mapping and modelling using geospatial AI.',
+      focus: 'Flood mapping and modelling',
+      bio: 'Uses geospatial AI to improve flood mapping and modelling workflows.',
     },
     {
       name: 'Yifan Liang',
       role: 'PhD Researcher',
-      bio: 'Modelling green space and mental health using Street View imagery.',
+      focus: 'Urban green space and health',
+      bio: 'Models green space and mental health using Street View imagery.',
     },
     {
       name: 'Holly Liken',
       role: 'PhD Researcher',
-      bio: 'AI for algal monitoring in freshwater ecosystems.',
+      focus: 'Freshwater ecosystem monitoring',
+      bio: 'Applies AI to algal monitoring in freshwater ecosystems.',
     },
   ];
 
@@ -373,18 +385,46 @@ function PeoplePage({ palette }: { palette: Palette }) {
       title="The researchers behind the lab"
       intro="A multidisciplinary team working across AI, ecology, remote sensing, and environmental data science."
     >
-      <div className="eil-feature">
-        <div className="eil-feature__badge">Lead investigator</div>
-        <div className="eil-feature__grid">
-          <div className="eil-feature__mark" aria-hidden="true">
-            CZ
+      <div className="eil-leadership">
+        <article className="eil-feature">
+          <div className="eil-feature__badge">Lead investigator</div>
+          <div className="eil-feature__grid">
+            <div className="eil-feature__mark" aria-hidden="true">
+              CZ
+            </div>
+            <div>
+              <h2 className="eil-feature__title">{primary.name}</h2>
+              <p className="eil-feature__meta">{primary.role}</p>
+              <p className="eil-feature__text">{primary.bio}</p>
+              <div className="eil-pillrow" aria-label="Research strengths">
+                {teamNotes.map((note) => (
+                  <span key={note} className="eil-pillrow__pill">
+                    {note}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-          <div>
-            <h2 className="eil-feature__title">{primary.name}</h2>
-            <p className="eil-feature__meta">{primary.role}</p>
-            <p className="eil-feature__text">{primary.bio}</p>
+        </article>
+
+        <aside className="eil-card eil-card--leadership">
+          <p className="eil-card__eyebrow">Lab profile</p>
+          <h3>What the team is built to do</h3>
+          <div className="eil-detail-stack eil-detail-stack--compact">
+            <div>
+              <span>Core methods</span>
+              Satellite AI, spatial modelling, and interpretable environmental analytics.
+            </div>
+            <div>
+              <span>Focus areas</span>
+              Biomass, ecosystem condition, flood risk, urban health, and freshwater monitoring.
+            </div>
+            <div>
+              <span>Output style</span>
+              Papers, datasets, reproducible workflows, and public-facing tools.
+            </div>
           </div>
-        </div>
+        </aside>
       </div>
 
       <div className="eil-grid eil-grid--people">
@@ -400,6 +440,7 @@ function PeoplePage({ palette }: { palette: Palette }) {
                 .slice(0, 2)
                 .join('')}
             </div>
+            <p className="eil-card__eyebrow">{person.focus}</p>
             <h3>{person.name}</h3>
             <p className="eil-card__role">{person.role}</p>
             <p>{person.bio}</p>
@@ -426,6 +467,35 @@ function ResearchPage({
       title="Core research directions"
       intro="The lab develops computational methods that connect rich Earth data with pressing environmental questions."
     >
+      <div className="eil-research-lead">
+        <article className="eil-card eil-card--research">
+          <p className="eil-card__eyebrow">Research programme</p>
+          <h3>From data collection to decision-ready outputs.</h3>
+          <p>
+            Each project begins with environmental data, moves through interpretable modelling, and ends with a
+            public or scientific output that can be reused by collaborators.
+          </p>
+        </article>
+
+        <aside className="eil-card eil-card--research eil-research-summary">
+          <p className="eil-card__eyebrow">What appears here</p>
+          <div className="eil-detail-stack eil-detail-stack--compact">
+            <div>
+              <span>Project pages</span>
+              Short case-study pages that can expand into methods, figures, and outputs.
+            </div>
+            <div>
+              <span>Shared methods</span>
+              Remote sensing, foundation models, spatial analysis, and reproducible workflows.
+            </div>
+            <div>
+              <span>Intended use</span>
+              Clear communication for collaborators, students, funders, and the public.
+            </div>
+          </div>
+        </aside>
+      </div>
+
       <div className="eil-grid eil-grid--research">
         {RESEARCH_PROJECTS.map((project) => (
           <button
@@ -437,13 +507,19 @@ function ResearchPage({
             className="eil-card eil-card--research"
             type="button"
           >
-            <div className="eil-card__eyebrow">
-              {project.label}
-            </div>
+            <div className="eil-card__eyebrow">{project.label}</div>
             <h3>{project.title}</h3>
-            <p>
-              {project.summary}
-            </p>
+            <p>{project.summary}</p>
+            <div className="eil-card__meta-stack">
+              <div>
+                <span>Focus</span>
+                {project.focus}
+              </div>
+              <div>
+                <span>Methods</span>
+                {project.methods}
+              </div>
+            </div>
             <div className="eil-card__pill">
               Open project page
             </div>
@@ -521,16 +597,19 @@ function PublicationsPage({ palette }: { palette: Palette }) {
       year: '2026',
       title: 'Downstream modelling of satellite embeddings for biomass mapping',
       venue: 'ISPRS Journal of Photogrammetry and Remote Sensing',
+      type: 'Journal article',
     },
     {
       year: '2025',
       title: 'Environmental foundation models for geospatial monitoring',
       venue: 'Remote Sensing of Environment',
+      type: 'Journal article',
     },
     {
       year: '2025',
       title: 'AI methods for ecosystem-scale Earth observation analysis',
       venue: 'Nature Communications',
+      type: 'Journal article',
     },
   ];
 
@@ -539,8 +618,42 @@ function PublicationsPage({ palette }: { palette: Palette }) {
       palette={palette}
       eyebrow="Publications"
       title="Selected papers and outputs"
-      intro="A clean, journal-style overview of publications, preprints, reports, and other scientific outputs."
+      intro="A curated record of papers, preprints, and lab outputs presented in a format that is easy to scan and extend."
     >
+      <div className="eil-publications-lead">
+        <article className="eil-card eil-card--featured-publication">
+          <p className="eil-card__eyebrow">Featured output</p>
+          <h3>Selected evidence should feel like a reading list, not a document dump.</h3>
+          <p>
+            Use this area to highlight the most important paper, the latest preprint, or the output you want visitors
+            to notice first.
+          </p>
+          <div className="eil-pillrow">
+            <span className="eil-pillrow__pill">Peer-reviewed</span>
+            <span className="eil-pillrow__pill">Preprints</span>
+            <span className="eil-pillrow__pill">Reports</span>
+          </div>
+        </article>
+
+        <aside className="eil-card eil-card--list">
+          <p className="eil-card__eyebrow">Curation notes</p>
+          <div className="eil-detail-stack eil-detail-stack--compact">
+            <div>
+              <span>Top level</span>
+              One featured item and a compact list of selected papers.
+            </div>
+            <div>
+              <span>Future additions</span>
+              Posters, talks, datasets, software, and project reports.
+            </div>
+            <div>
+              <span>Best practice</span>
+              Add DOI, preprint link, and a short summary when available.
+            </div>
+          </div>
+        </aside>
+      </div>
+
       <div className="eil-list">
         {publications.map((paper) => (
           <article
@@ -551,6 +664,7 @@ function PublicationsPage({ palette }: { palette: Palette }) {
               <div>
                 <p className="eil-card__eyebrow">{paper.year}</p>
                 <h3>{paper.title}</h3>
+                <p className="eil-card__tag">{paper.type}</p>
                 <p className="eil-card__meta">{paper.venue}</p>
               </div>
               <button className="eil-card__button" type="button">
@@ -568,36 +682,18 @@ function InteractiveResourcesPage({ palette }: { palette: Palette }) {
   const resources = [
     {
       title: 'Interactive biomass explorer',
-      description: 'A future interactive tool for exploring predictions, uncertainty, and landscape variation.',
+      description: 'A future map-based interface for exploring predictions, uncertainty, and landscape variation.',
+      label: 'Map interface',
     },
     {
       title: 'Research visualisations',
       description: 'Figures, dashboards, and exploratory scientific interfaces for environmental data.',
+      label: 'Visual analytics',
     },
     {
       title: 'Teaching and lab resources',
       description: 'Accessible explainers, demos, and material for collaborators, students, and visitors.',
-    },
-  ];
-
-  const getStartedSteps = [
-    {
-      step: '1',
-      title: 'Install our package',
-      body: 'Start by installing @vercel/speed-insights in your existing project.',
-      code: 'npm i @vercel/speed-insights',
-    },
-    {
-      step: '2',
-      title: 'Add the React component',
-      body: 'Import and use the <SpeedInsights /> React component in your app root or main file.',
-      code: "import { SpeedInsights } from '@vercel/speed-insights/react'\n\n<SpeedInsights />",
-    },
-    {
-      step: '3',
-      title: 'Deploy & Visit your Site',
-      body: 'Deploy your changes and visit the deployment to collect your first data points.',
-      code: 'If data does not appear after 30 seconds, check for content blockers and navigate between pages.',
+      label: 'Reference material',
     },
   ];
 
@@ -608,6 +704,35 @@ function InteractiveResourcesPage({ palette }: { palette: Palette }) {
       title="Tools, visualisations, and public-facing resources"
       intro="A space for interactive scientific communication, exploratory tools, and environmental data experiences."
     >
+      <div className="eil-resources-lead">
+        <article className="eil-card eil-card--resource eil-card--resource--featured">
+          <p className="eil-card__eyebrow">Resource hub</p>
+          <h3>Build a public layer around the science.</h3>
+          <p>
+            This section works best when it holds a small set of intentional tools: a map, a dashboard, a data note,
+            and a link to documentation or code.
+          </p>
+        </article>
+
+        <aside className="eil-card eil-card--resource">
+          <p className="eil-card__eyebrow">Suggested structure</p>
+          <div className="eil-detail-stack eil-detail-stack--compact">
+            <div>
+              <span>Interactive</span>
+              Map viewers, calculators, and scenario explorers.
+            </div>
+            <div>
+              <span>Explain</span>
+              Short notes that translate methods for non-specialists.
+            </div>
+            <div>
+              <span>Share</span>
+              Data downloads, code repositories, and citations.
+            </div>
+          </div>
+        </aside>
+      </div>
+
       <div className="eil-grid eil-grid--resources">
         {resources.map((resource) => (
           <article
@@ -615,40 +740,11 @@ function InteractiveResourcesPage({ palette }: { palette: Palette }) {
             className="eil-card eil-card--resource"
           >
             <div className="eil-resource__figure" aria-hidden="true" />
+            <p className="eil-card__eyebrow">{resource.label}</p>
             <h3>{resource.title}</h3>
-            <p>
-              {resource.description}
-            </p>
+            <p>{resource.description}</p>
           </article>
         ))}
-      </div>
-
-      <div className="eil-getstarted">
-        <div className="eil-section__head eil-section__head--compact">
-          <p className="eil-kicker">Get Started</p>
-          <h2>To start collecting performance metrics, follow these steps.</h2>
-        </div>
-
-        <div className="eil-grid eil-grid--detail">
-          <article className="eil-card eil-card--detail eil-getstarted__intro">
-            <h3>Vercel Speed Insights</h3>
-            <p>
-              This app uses the React version of Speed Insights, which fits the current Vite React codebase.
-            </p>
-            <pre className="eil-codeblock">{`npm i @vercel/speed-insights`}</pre>
-          </article>
-
-          <div className="eil-grid eil-grid--steps">
-            {getStartedSteps.map((item) => (
-              <article className="eil-card eil-card--detail eil-stepcard" key={item.step}>
-                <p className="eil-card__eyebrow">{item.step}</p>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-                <pre className="eil-codeblock">{item.code}</pre>
-              </article>
-            ))}
-          </div>
-        </div>
       </div>
     </PageShell>
   );
@@ -1083,6 +1179,15 @@ const styles = `
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .eil-leadership,
+  .eil-research-lead,
+  .eil-publications-lead,
+  .eil-resources-lead {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .eil-grid--people {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1109,7 +1214,9 @@ const styles = `
   .eil-card--research,
   .eil-card--detail,
   .eil-card--list,
-  .eil-card--resource {
+  .eil-card--resource,
+  .eil-card--leadership,
+  .eil-card--featured-publication {
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.72)),
       rgba(73, 198, 229, 0.08);
@@ -1126,7 +1233,9 @@ const styles = `
   .eil-card--detail h2,
   .eil-card--detail h3,
   .eil-card--list h3,
-  .eil-card--resource h3 {
+  .eil-card--resource h3,
+  .eil-card--leadership h3,
+  .eil-card--featured-publication h3 {
     color: var(--charcoal);
   }
 
@@ -1146,9 +1255,17 @@ const styles = `
 
   .eil-card__role,
   .eil-card__meta,
+  .eil-card__tag,
   .eil-card--detail p,
-  .eil-card--resource p {
+  .eil-card--resource p,
+  .eil-card--leadership p,
+  .eil-card--featured-publication p {
     color: var(--muted);
+  }
+
+  .eil-card__tag {
+    margin-top: 8px;
+    font-size: 0.86rem;
   }
 
   .eil-card__pill,
@@ -1180,6 +1297,27 @@ const styles = `
   .eil-getstarted {
     margin-top: 18px;
     padding-top: 6px;
+  }
+
+  .eil-pillrow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .eil-pillrow__pill {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .eil-detail-stack--compact {
+    margin-top: 12px;
+    gap: 12px;
   }
 
   .eil-getstarted__intro {
@@ -1228,6 +1366,24 @@ const styles = `
     text-transform: uppercase;
   }
 
+  .eil-card__meta-stack {
+    display: grid;
+    gap: 12px;
+    margin-top: 6px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+
+  .eil-card__meta-stack span {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--charcoal);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
   .eil-list {
     display: grid;
     gap: 14px;
@@ -1255,6 +1411,25 @@ const styles = `
   .eil-card p {
     margin-top: 12px;
     color: var(--muted);
+  }
+
+  .eil-card--research {
+    width: 100%;
+    text-align: left;
+  }
+
+  .eil-card--research p {
+    margin-top: 12px;
+  }
+
+  .eil-card--featured-publication {
+    display: grid;
+    gap: 12px;
+  }
+
+  .eil-card--resource--featured {
+    display: grid;
+    gap: 12px;
   }
 
   .eil-join {
@@ -1301,6 +1476,10 @@ const styles = `
 
     .eil-grid--three,
     .eil-split,
+    .eil-leadership,
+    .eil-research-lead,
+    .eil-publications-lead,
+    .eil-resources-lead,
     .eil-grid--people,
     .eil-grid--research,
     .eil-grid--detail,
@@ -1351,6 +1530,10 @@ const styles = `
 
     .eil-grid--three,
     .eil-split,
+    .eil-leadership,
+    .eil-research-lead,
+    .eil-publications-lead,
+    .eil-resources-lead,
     .eil-grid--people,
     .eil-grid--research,
     .eil-grid--detail,
