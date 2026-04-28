@@ -670,7 +670,7 @@ p {
   padding: 28px;
 }
 
-.leader-panel__mark,
+.leader-panel__portrait,
 .person-card__top span {
   display: grid;
   place-items: center;
@@ -680,12 +680,33 @@ p {
     var(--forest);
 }
 
-.leader-panel__mark {
+.leader-panel__portrait {
+  position: relative;
   width: 118px;
   height: 118px;
   border-radius: 32px;
+  overflow: hidden;
   font-family: 'Fraunces', Georgia, serif;
   font-size: 2.4rem;
+}
+
+.leader-panel__portrait img,
+.leader-panel__portrait span {
+  grid-area: 1 / 1;
+}
+
+.leader-panel__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+.leader-panel__portrait span {
+  position: relative;
+  z-index: 0;
 }
 
 .leader-panel p:last-child {
@@ -1077,7 +1098,7 @@ p {
     padding: 20px;
   }
 
-  .leader-panel__mark {
+  .leader-panel__portrait {
     width: 84px;
     height: 84px;
     border-radius: 24px;

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { PotentialEstimator } from './components/PotentialEstimator';
 import { siteContent } from './data/siteContent';
+import ceZhangImage from '../Figures/Ce_Zhang.png';
 
 type PageName = 'Home' | 'People' | 'Research' | 'Research Detail' | 'Publications' | 'Interactive Resources';
 
@@ -65,21 +66,22 @@ const researchProjects: ResearchProject[] = [
   },
 ];
 
-const people = [
-  {
-    name: 'Dr Ce Zhang',
-    role: 'Senior Lecturer in Environmental Data Science',
-    initials: 'CZ',
-    focus: 'Environmental data science, remote sensing, geospatial AI',
-    bio: 'Leads research on AI-driven geospatial and remote sensing methods for understanding complex environmental and socio-ecological systems.',
-    type: 'Lab lead',
-    selectedWork: {
-      title: 'UNetFormer',
-      detail:
-        'Co-authored a transformer-based semantic segmentation model for efficient remote sensing urban scene interpretation, published in ISPRS Journal of Photogrammetry and Remote Sensing.',
-      href: 'https://doi.org/10.1016/j.isprsjprs.2022.06.008',
-    },
+const leadInvestigator = {
+  name: 'Dr Ce Zhang',
+  role: 'Senior Lecturer in Environmental Data Science',
+  initials: 'CZ',
+  imageUrl: ceZhangImage,
+  focus: 'Environmental data science, remote sensing, geospatial AI',
+  bio: 'Leads research on AI-driven geospatial and remote sensing methods for understanding complex environmental and socio-ecological systems.',
+  selectedWork: {
+    title: 'UNetFormer',
+    detail:
+      'Co-authored a transformer-based semantic segmentation model for efficient remote sensing urban scene interpretation, published in ISPRS Journal of Photogrammetry and Remote Sensing.',
+    href: 'https://doi.org/10.1016/j.isprsjprs.2022.06.008',
   },
+};
+
+const people = [
   {
     name: 'Tom Moncrief',
     role: 'MScR Postgraduate Researcher',
@@ -123,6 +125,12 @@ const people = [
     focus: 'Flood mapping and modelling',
     bio: 'Uses geospatial AI to improve flood mapping, modelling, and risk-informed spatial analysis.',
     type: 'Researcher',
+    selectedWork: {
+      title: 'Rapid urban flood mapping',
+      detail:
+        'First author on a Frontiers in Environmental Science paper combining SAR imagery and land cover products for rapid urban flood mapping in complex urban settings.',
+      href: 'https://doi.org/10.3389/fenvs.2022.973192',
+    },
   },
   {
     name: 'Yifan Liang',
@@ -427,14 +435,23 @@ function PeoplePage() {
       intro="The team combines environmental data science, remote sensing, machine learning, and applied domain expertise."
     >
       <section className="leader-panel">
-        <div className="leader-panel__mark">CZ</div>
+        <div className="leader-panel__portrait">
+          <img
+            src={leadInvestigator.imageUrl}
+            alt={`${leadInvestigator.name} profile`}
+            onError={(event) => {
+              event.currentTarget.style.display = 'none';
+            }}
+          />
+          <span>{leadInvestigator.initials}</span>
+        </div>
         <div>
           <p className="eyebrow">Lead Investigator</p>
-          <h2>Dr Ce Zhang</h2>
-          <p>
-            Senior Lecturer in Environmental Data Science at the University of Bristol, specialising in AI-driven
-            geospatial and remote sensing methods for complex environmental and socio-ecological systems.
-          </p>
+          <h2>{leadInvestigator.name}</h2>
+          <p className="person-card__role">{leadInvestigator.role}</p>
+          <p className="person-card__focus">{leadInvestigator.focus}</p>
+          <p>{leadInvestigator.bio}</p>
+          <SelectedWork work={leadInvestigator.selectedWork} />
         </div>
       </section>
 
@@ -456,11 +473,7 @@ function PeoplePage() {
               <p className="person-card__focus">{person.focus}</p>
               <p>{person.bio}</p>
               {'selectedWork' in person && person.selectedWork ? (
-                <a className="person-card__work" href={person.selectedWork.href} target="_blank" rel="noreferrer">
-                  <span>Selected work</span>
-                  <strong>{person.selectedWork.title}</strong>
-                  {person.selectedWork.detail}
-                </a>
+                <SelectedWork work={person.selectedWork} />
               ) : null}
             </article>
           ))}
@@ -711,6 +724,24 @@ function ResearchCard({ project }: { project: ResearchProject }) {
         View project
       </a>
     </article>
+  );
+}
+
+function SelectedWork({
+  work,
+}: {
+  work: {
+    title: string;
+    detail: string;
+    href: string;
+  };
+}) {
+  return (
+    <a className="person-card__work" href={work.href} target="_blank" rel="noreferrer">
+      <span>Selected work</span>
+      <strong>{work.title}</strong>
+      {work.detail}
+    </a>
   );
 }
 
