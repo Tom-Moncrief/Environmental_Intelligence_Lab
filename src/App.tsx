@@ -3,6 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { PotentialEstimator } from './components/PotentialEstimator';
 import { siteContent } from './data/siteContent';
 import ceZhangImage from '../Figures/Ce_Zhang.png';
+import tomMoncriefImage from '../Figures/Tom_Moncrief_profile.jpg';
 
 type PageName = 'Home' | 'People' | 'Research' | 'Research Detail' | 'Publications' | 'Interactive Resources';
 
@@ -112,6 +113,7 @@ const people = [
     name: 'Tom Moncrief',
     role: 'MScR Postgraduate Researcher',
     initials: 'TM',
+    imageUrl: tomMoncriefImage,
     focus: 'Satellite embeddings and biomass mapping',
     bio: 'Works on foundation model embeddings, biomass estimation, and geospatial modelling workflows for ecosystem monitoring.',
     type: 'Researcher',
@@ -507,7 +509,7 @@ function PeoplePage() {
           {people.map((person) => (
             <article className="person-card" key={person.name}>
               <div className="person-card__top">
-                <span>{person.initials}</span>
+                <PersonAvatar name={person.name} initials={person.initials} imageUrl={'imageUrl' in person ? person.imageUrl : undefined} />
                 <small>{person.type}</small>
               </div>
               <h3>{person.name}</h3>
@@ -785,6 +787,23 @@ function SelectedWork({
       <strong>{work.title}</strong>
       {work.detail}
     </a>
+  );
+}
+
+function PersonAvatar({ name, initials, imageUrl }: { name: string; initials: string; imageUrl?: string }) {
+  return (
+    <span className={imageUrl ? 'person-card__avatar person-card__avatar--image' : 'person-card__avatar'}>
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt={`${name} profile`}
+          onError={(event) => {
+            event.currentTarget.style.display = 'none';
+          }}
+        />
+      ) : null}
+      <span>{initials}</span>
+    </span>
   );
 }
 

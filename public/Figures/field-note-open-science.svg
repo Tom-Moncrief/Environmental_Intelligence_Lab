@@ -1,0 +1,34 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#162A26"/>
+  <rect width="1200" height="820" fill="url(#cool)"/>
+  <g opacity="0.18">
+    <path d="M0 136H1200M0 272H1200M0 408H1200M0 544H1200M0 680H1200M150 0V820M300 0V820M450 0V820M600 0V820M750 0V820M900 0V820M1050 0V820" stroke="#FBFAF5" stroke-width="2"/>
+  </g>
+  <g transform="translate(130 132)">
+    <rect x="0" y="0" width="430" height="290" rx="30" fill="#FBFAF5" fill-opacity="0.94"/>
+    <rect x="42" y="50" width="154" height="154" rx="22" fill="#203F38"/>
+    <path d="M77 159L111 111L143 142L165 88" stroke="#8AB7BD" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M235 62H360M235 112H330M235 162H374M42 238H360" stroke="#65746F" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(660 114)">
+    <rect x="0" y="0" width="330" height="250" rx="28" fill="#FBFAF5" fill-opacity="0.88"/>
+    <circle cx="90" cy="88" r="42" fill="#C88935"/>
+    <circle cx="208" cy="92" r="42" fill="#8AB7BD"/>
+    <circle cx="150" cy="172" r="42" fill="#B8C7AA"/>
+    <path d="M124 88H174M187 125L170 145M126 125L139 146" stroke="#203F38" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(326 498)">
+    <rect x="0" y="0" width="548" height="160" rx="30" fill="#203F38" fill-opacity="0.92"/>
+    <path d="M58 56H188M58 104H278M342 56H490M342 104H438" stroke="#FBFAF5" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="300" cy="80" r="18" fill="#C88935"/>
+  </g>
+  <path d="M106 668C237 608 348 606 486 655C611 699 711 706 836 648C951 595 1071 607 1200 678V820H0V730C34 706 69 685 106 668Z" fill="#B8C7AA"/>
+  <path d="M0 742C184 694 314 723 455 759C631 803 765 778 911 733C1017 700 1116 713 1200 759V820H0V742Z" fill="#F4EFE1"/>
+  <defs>
+    <radialGradient id="cool" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(796 122) rotate(133) scale(760 910)">
+      <stop stop-color="#8AB7BD"/>
+      <stop offset="0.46" stop-color="#20483D"/>
+      <stop offset="1" stop-color="#162A26"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,40 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" fill="#203f38"/>
+  <rect width="1200" height="820" fill="url(#skyGlow)"/>
+  <g opacity="0.26">
+    <path d="M0 164H1200M0 328H1200M0 492H1200M0 656H1200M200 0V820M400 0V820M600 0V820M800 0V820M1000 0V820" stroke="#FEFCF5" stroke-width="2"/>
+  </g>
+  <g filter="url(#shadow)">
+    <path d="M210 530C314 440 390 278 535 284C653 289 715 403 822 388C902 377 958 305 1034 328C1108 350 1137 447 1187 530V820H210V530Z" fill="#6F8755"/>
+    <path d="M0 602C120 536 228 465 350 489C451 509 504 588 607 582C725 575 793 471 918 493C1048 516 1113 628 1200 666V820H0V602Z" fill="#B7C8A8"/>
+    <path d="M0 664C167 626 258 654 397 695C515 730 653 725 783 670C916 613 1049 617 1200 694V820H0V664Z" fill="#E8E2C5"/>
+  </g>
+  <g opacity="0.78">
+    <rect x="136" y="132" width="330" height="220" rx="24" fill="#FBFAF5" fill-opacity="0.9"/>
+    <path d="M170 304L224 234L279 270L331 194L430 304H170Z" fill="#8AB7BD"/>
+    <path d="M170 304L224 250L280 278L330 225L430 304H170Z" fill="#20483D"/>
+    <circle cx="378" cy="184" r="28" fill="#C88935"/>
+  </g>
+  <g transform="translate(742 118) rotate(18)">
+    <rect x="0" y="0" width="260" height="150" rx="18" fill="#FBFAF5"/>
+    <rect x="28" y="28" width="204" height="94" rx="8" fill="#203F38"/>
+    <path d="M56 76H204M130 42V110" stroke="#8AB7BD" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="130" cy="76" r="16" fill="#C88935"/>
+    <path d="M28 75H-70M232 75H330" stroke="#FBFAF5" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g opacity="0.86">
+    <circle cx="895" cy="512" r="92" stroke="#FBFAF5" stroke-width="4"/>
+    <circle cx="895" cy="512" r="42" stroke="#FBFAF5" stroke-width="4"/>
+    <path d="M895 420V604M803 512H987" stroke="#FBFAF5" stroke-width="4"/>
+  </g>
+  <defs>
+    <radialGradient id="skyGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(894 112) rotate(131) scale(690 838)">
+      <stop stop-color="#8AB7BD"/>
+      <stop offset="0.52" stop-color="#335E55"/>
+      <stop offset="1" stop-color="#132B26"/>
+    </radialGradient>
+    <filter id="shadow" x="-40" y="232" width="1280" height="628" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="-22" stdDeviation="28" flood-color="#0E211D" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+</svg>
