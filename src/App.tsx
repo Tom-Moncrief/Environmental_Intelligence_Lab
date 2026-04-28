@@ -3,7 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { PotentialEstimator } from './components/PotentialEstimator';
 import { siteContent } from './data/siteContent';
 import ceZhangImage from '../Figures/Ce_Zhang.png';
-import tomMoncriefImage from '../Figures/Tom_Moncrief_profile.jpg';
+import tomMoncriefImage from '../Figures/Tom_Moncrief_card.jpg';
 
 type PageName = 'Home' | 'People' | 'Research' | 'Research Detail' | 'Publications' | 'Interactive Resources';
 
