@@ -663,10 +663,11 @@ p {
 
 .leader-panel {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 26px;
-  align-items: center;
-  padding: 28px;
+  grid-template-columns: minmax(280px, 0.42fr) minmax(0, 0.58fr);
+  gap: 0;
+  align-items: stretch;
+  overflow: hidden;
+  padding: 0;
 }
 
 .leader-panel__portrait,
@@ -679,14 +680,23 @@ p {
     linear-gradient(135deg, var(--forest), var(--teal));
 }
 
+.leader-panel__media {
+  min-height: 460px;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(53, 199, 208, 0.28), transparent 13rem),
+    linear-gradient(135deg, rgba(18, 61, 53, 0.98), rgba(0, 168, 150, 0.72));
+}
+
 .leader-panel__portrait {
   position: relative;
-  width: 148px;
-  height: 148px;
-  border-radius: 36px;
+  width: 100%;
+  height: 100%;
+  min-height: 424px;
+  border-radius: 24px;
   overflow: hidden;
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 2.4rem;
+  font-size: 4rem;
 }
 
 .leader-panel__portrait img,
@@ -710,6 +720,11 @@ p {
 .person-card__avatar span {
   position: relative;
   z-index: 0;
+}
+
+.leader-panel__content {
+  align-self: center;
+  padding: clamp(28px, 4vw, 46px);
 }
 
 .leader-panel p:last-child {
@@ -1100,6 +1115,14 @@ p {
     min-height: 260px;
   }
 
+  .leader-panel__media {
+    min-height: 360px;
+  }
+
+  .leader-panel__portrait {
+    min-height: 324px;
+  }
+
   .statement-card {
     min-height: 240px;
   }
@@ -1241,10 +1264,20 @@ p {
   }
 
   .leader-panel__portrait {
-    width: 104px;
-    height: 104px;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
     border-radius: 28px;
     font-size: 1.8rem;
+  }
+
+  .leader-panel__media {
+    min-height: 316px;
+    padding: 16px;
+  }
+
+  .leader-panel__content {
+    padding: 20px;
   }
 
   .person-card {

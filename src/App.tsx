@@ -474,17 +474,19 @@ function PeoplePage() {
       intro="The team combines environmental data science, remote sensing, machine learning, ecology, urban analysis, hazards, and applied domain expertise."
     >
       <section className="leader-panel">
-        <div className="leader-panel__portrait">
-          <img
-            src={leadInvestigator.imageUrl}
-            alt={`${leadInvestigator.name} profile`}
-            onError={(event) => {
-              event.currentTarget.style.display = 'none';
-            }}
-          />
-          <span>{leadInvestigator.initials}</span>
+        <div className="leader-panel__media">
+          <div className="leader-panel__portrait">
+            <img
+              src={leadInvestigator.imageUrl}
+              alt={`${leadInvestigator.name} profile`}
+              onError={(event) => {
+                event.currentTarget.style.display = 'none';
+              }}
+            />
+            <span>{leadInvestigator.initials}</span>
+          </div>
         </div>
-        <div>
+        <div className="leader-panel__content">
           <p className="eyebrow">Lead Investigator</p>
           <h2>{leadInvestigator.name}</h2>
           <p className="person-card__role">{leadInvestigator.role}</p>
