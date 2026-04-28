@@ -508,17 +508,23 @@ function PeoplePage() {
         <div className="card-grid card-grid--people">
           {people.map((person) => (
             <article className="person-card" key={person.name}>
-              <div className="person-card__top">
-                <PersonAvatar name={person.name} initials={person.initials} imageUrl={'imageUrl' in person ? person.imageUrl : undefined} />
+              <div className="person-card__media">
+                <PersonAvatar
+                  name={person.name}
+                  initials={person.initials}
+                  imageUrl={'imageUrl' in person ? person.imageUrl : undefined}
+                />
                 <small>{person.type}</small>
               </div>
-              <h3>{person.name}</h3>
-              <p className="person-card__role">{person.role}</p>
-              <p className="person-card__focus">{person.focus}</p>
-              <p>{person.bio}</p>
-              {'selectedWork' in person && person.selectedWork ? (
-                <SelectedWork work={person.selectedWork} />
-              ) : null}
+              <div className="person-card__content">
+                <h3>{person.name}</h3>
+                <p className="person-card__role">{person.role}</p>
+                <p className="person-card__focus">{person.focus}</p>
+                <p>{person.bio}</p>
+                {'selectedWork' in person && person.selectedWork ? (
+                  <SelectedWork work={person.selectedWork} />
+                ) : null}
+              </div>
             </article>
           ))}
         </div>
