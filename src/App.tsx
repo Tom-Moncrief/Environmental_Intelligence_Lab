@@ -3,8 +3,6 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import { PotentialEstimator } from './components/PotentialEstimator';
 import { siteContent } from './data/siteContent';
 
-const logoUrl = '/Figures/eil-logo-header.jpg';
-
 type PageName = 'Home' | 'People' | 'Research' | 'Research Detail' | 'Publications' | 'Interactive Resources';
 
 type NavPage = Exclude<PageName, 'Research Detail'>;
@@ -75,6 +73,12 @@ const people = [
     focus: 'Environmental data science, remote sensing, geospatial AI',
     bio: 'Leads research on AI-driven geospatial and remote sensing methods for understanding complex environmental and socio-ecological systems.',
     type: 'Lab lead',
+    selectedWork: {
+      title: 'UNetFormer',
+      detail:
+        'Co-authored a transformer-based semantic segmentation model for efficient remote sensing urban scene interpretation, published in ISPRS Journal of Photogrammetry and Remote Sensing.',
+      href: 'https://doi.org/10.1016/j.isprsjprs.2022.06.008',
+    },
   },
   {
     name: 'Tom Moncrief',
@@ -91,6 +95,12 @@ const people = [
     focus: 'Vision-language models',
     bio: 'Develops vision-language approaches for interpreting remote sensing imagery and environmental scenes.',
     type: 'Researcher',
+    selectedWork: {
+      title: 'DGL-RSIS',
+      detail:
+        'Lead author on a training-free remote sensing image segmentation framework that decouples global spatial context and local class semantics for vision-language segmentation.',
+      href: 'https://doi.org/10.1016/j.jag.2026.105113',
+    },
   },
   {
     name: 'James Brock',
@@ -99,6 +109,12 @@ const people = [
     focus: 'Forest change analysis',
     bio: 'Studies how multimodal AI can support forest monitoring, change detection, and environmental interpretation.',
     type: 'Researcher',
+    selectedWork: {
+      title: 'Forest-Chat',
+      detail:
+        'Lead author on an LLM-driven vision-language agent for interactive forest change analysis, supporting natural language queries over forest monitoring tasks.',
+      href: 'https://doi.org/10.1016/j.ecoinf.2026.103741',
+    },
   },
   {
     name: 'Ziming Wang',
@@ -254,7 +270,6 @@ function SiteHeader({ currentPage }: { currentPage: PageName }) {
     <header className="site-header">
       <div className="shell site-header__inner">
         <a className="brand" href={routeHref('Home')} aria-label="Environmental Intelligence Labs home">
-          <img className="brand__logo" src={logoUrl} alt="" />
           <span className="brand__text">
             <strong>Environmental Intelligence Labs</strong>
             <span>University of Bristol</span>
@@ -321,7 +336,7 @@ function HomePage() {
       <SectionIntro
         eyebrow="Lab Mission"
         title="Research that turns Earth observation into environmental understanding."
-        text="The lab brings together remote sensing, machine learning, ecological knowledge, and clear scientific communication. The result is a public-facing research site that feels credible, modern, and ready to expand."
+        text="The lab brings together remote sensing, machine learning, ecological knowledge, and clear scientific communication."
       />
 
       <section className="section section--flush">
@@ -360,25 +375,11 @@ function HomePage() {
       </section>
 
       <section className="section">
-        <div className="shell feature-band">
-          <div>
-            <p className="eyebrow">Deployment Ready</p>
-            <h2>Consistent pages, reusable patterns, and clear places to grow.</h2>
-          </div>
-          <p>
-            The site now uses one visual language across navigation, page headers, cards, lists, resources, and the
-            interactive estimator. New publications, projects, datasets, or team members can be added without changing
-            the underlying design system.
-          </p>
-        </div>
-      </section>
-
-      <section className="section">
         <div className="shell">
           <SectionHeader
             eyebrow="Research Focus"
             title="A lab identity built around environmental evidence."
-            text="The reference sites use strong mission statements, research categories, and field-led storytelling. This site now uses the same principles with an original GeoAI-focused visual system."
+            text="Remote sensing, field context, and open tools shape how the lab communicates its work."
           />
           <div className="motif-grid">
             {researchMotifs.map((motif) => (
@@ -414,8 +415,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-      <JoinBand />
     </main>
   );
 }
@@ -456,12 +455,17 @@ function PeoplePage() {
               <p className="person-card__role">{person.role}</p>
               <p className="person-card__focus">{person.focus}</p>
               <p>{person.bio}</p>
+              {'selectedWork' in person && person.selectedWork ? (
+                <a className="person-card__work" href={person.selectedWork.href} target="_blank" rel="noreferrer">
+                  <span>Selected work</span>
+                  <strong>{person.selectedWork.title}</strong>
+                  {person.selectedWork.detail}
+                </a>
+              ) : null}
             </article>
           ))}
         </div>
       </section>
-
-      <JoinBand />
     </PageShell>
   );
 }
@@ -502,8 +506,6 @@ function ResearchPage() {
           ))}
         </div>
       </section>
-
-      <JoinBand />
     </PageShell>
   );
 }
@@ -562,8 +564,6 @@ function ResearchDetailPage({ researchId }: { researchId: string | null }) {
           ))}
         </div>
       </section>
-
-      <JoinBand />
     </PageShell>
   );
 }
@@ -600,8 +600,6 @@ function PublicationsPage() {
           ))}
         </div>
       </section>
-
-      <JoinBand />
     </PageShell>
   );
 }
@@ -627,8 +625,6 @@ function ResourcesPage() {
       </section>
 
       <PotentialEstimator copy={siteContent.estimator} />
-
-      <JoinBand />
     </PageShell>
   );
 }
@@ -715,33 +711,6 @@ function ResearchCard({ project }: { project: ResearchProject }) {
         View project
       </a>
     </article>
-  );
-}
-
-function JoinBand() {
-  return (
-    <section className="section section--compact">
-      <div className="join-band">
-        <div>
-          <p className="eyebrow">Join and Collaborate</p>
-          <h2>Work with us on geospatial AI for environmental change.</h2>
-        </div>
-        <div>
-          <p>
-            The lab welcomes conversations with students, collaborators, public agencies, and research partners working
-            on remote sensing, biomass, ecological monitoring, and environmental decision support.
-          </p>
-          <div className="button-row">
-            <a className="button button--primary" href="mailto:hello@environmentalintelligencelabs.org">
-              Contact the lab
-            </a>
-            <a className="button button--secondary" href="#/research">
-              View research
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 
