@@ -43,15 +43,15 @@ function localEstimate(areaHa: number, vegetationIndex: number, rainfallScore: n
   const band = score >= 75 ? 'High potential' : score >= 45 ? 'Moderate potential' : 'Lower potential';
   const recommendations =
     score >= 75
-      ? ['Prioritise this zone for field validation.', 'Add crop-specific growth assumptions.', 'Link to map and reporting views.']
+      ? ['Prioritise this zone for field validation.', 'Add domain-specific assumptions.', 'Link to map and reporting views.']
       : score >= 45
-        ? ['Refine the inputs with local field data.', 'Test alternate crop parameters.', 'Compare adjacent areas.']
+        ? ['Refine the inputs with local field data.', 'Test alternate scenario parameters.', 'Compare adjacent areas.']
         : ['Use more detailed sensing or field observations.', 'Adjust the soil and rainfall layers.', 'Check whether the area should be excluded.'];
 
   return {
     score,
     band,
-    summary: `The current combination suggests ${band.toLowerCase()} for biomass energy crop planning.`,
+    summary: `The current combination suggests ${band.toLowerCase()} for this environmental planning scenario.`,
     recommendations,
     inputs: { areaHa, vegetationIndex, rainfallScore, soilScore },
     source: 'local',

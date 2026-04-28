@@ -2,28 +2,28 @@ export const siteContent = {
   brand: {
     name: 'Environmental Intelligence Labs',
     shortName: 'EIL',
-    tagline: 'GeoAI for biomass energy crops',
+    tagline: 'AI and geospatial data science for environmental systems',
     subtitle:
-      'A public research site for mapping biomass opportunity with detection, prediction, and decision support.',
+      'A public research site for remote sensing, environmental data science, and socio-ecological intelligence.',
   },
   hero: {
-    headline: 'GeoAI for biomass energy crops in the UK.',
+    headline: 'Environmental intelligence for a changing planet.',
     description:
-      'A national-scale research platform for sustainable biomass expansion. The site is designed to feel calm, credible, and editorial, with enough structure to present the project clearly to academic and public audiences.',
-    primaryCta: 'Explore the project',
+      'A research platform for applying AI, machine learning, deep learning, remote sensing, and geospatial modelling to environmental and socio-ecological systems.',
+    primaryCta: 'Explore research',
     secondaryCta: 'Open editable content',
   },
   metrics: [
-    { value: 'National', label: 'Designed to support UK-scale biomass planning' },
-    { value: 'Multimodal', label: 'Satellite, aerial, LiDAR, field, and environmental data' },
-    { value: 'Adaptive', label: 'Built for continuous updates and scenario testing' },
+    { value: 'AI', label: 'Machine learning, deep learning, and computer vision' },
+    { value: 'Geospatial', label: 'Satellite, UAV, SAR, street-view, field, and environmental data' },
+    { value: 'Systems', label: 'Biodiversity, hazards, cities, land systems, food security, and carbon' },
   ],
   pages: {
     people: {
       eyebrow: 'The People',
-      title: 'The team behind the project',
+      title: 'The team behind the lab',
       description:
-        'This page introduces the people leading and supporting the GeoAI biomass energy crops project.',
+        'This page introduces the people working across GeoAI, remote sensing, environmental data science, and applied environmental systems.',
       members: [
         {
           name: 'Ce Zhang',
@@ -58,47 +58,47 @@ export const siteContent = {
   },
   coreAim: {
     eyebrow: 'Core aim',
-    title: 'Develop a national-scale GeoAI system for sustainable biomass expansion',
+    title: 'Develop GeoAI methods for environmental intelligence',
     text:
-      'The project uses multimodal data, including satellite, aerial, LiDAR, field, and environmental sources, to guide where biomass energy crops should be expanded across the UK in support of net zero.',
+      'The lab uses multimodal data, including satellite, UAV, SAR, street-view, field, and environmental sources, to understand environmental change and support decision-making.',
   },
   problem: {
     eyebrow: 'Problem statement',
-    title: 'The UK lacks reliable biomass intelligence at scale',
+    title: 'Environmental decisions need better spatial intelligence',
     text:
-      'There are no accurate, up-to-date maps of biomass crops, no robust national estimates of biomass yield and carbon storage, and no clear guidance on where new crops should be planted. That evidence gap slows policy, investment, and large-scale deployment.',
+      'Environmental systems are data-rich but difficult to interpret consistently. Robust AI and geospatial modelling can turn complex observations into evidence for science, policy, and planning.',
     cards: [
       {
-        title: 'Missing maps',
-        body: 'The current picture of existing biomass crops is incomplete and difficult to update.',
+        title: 'Complex observations',
+        body: 'Satellite, UAV, SAR, street-view, and field datasets need methods that can connect across scales and contexts.',
       },
       {
-        title: 'Uncertain estimates',
-        body: 'Biomass yield and carbon storage need stronger spatial evidence and consistency.',
+        title: 'Uncertain systems',
+        body: 'Environmental processes need models that represent uncertainty and support interpretation.',
       },
       {
-        title: 'Limited guidance',
-        body: 'Decision-makers lack clear location guidance for future planting and expansion.',
+        title: 'Decision gaps',
+        body: 'Researchers and decision-makers need clearer spatial evidence for hazards, biodiversity, cities, food systems, carbon, and land use.',
       },
     ],
   },
   objectives: {
     eyebrow: 'Three key objectives',
-    title: 'Map, quantify, and optimise',
+    title: 'Interpret, model, and support decisions',
     description:
       'These are the three technical pillars of the project, and they map directly to the GeoAI pipeline shown later on the page.',
     cards: [
       {
-        title: '1. Map existing biomass crops',
-        body: 'Identify where miscanthus, willow, and poplar are grown, and understand the environmental conditions they thrive in.',
+        title: '1. Interpret Earth observation data',
+        body: 'Use AI and computer vision to analyse satellite, UAV, SAR, and other spatial imagery.',
       },
       {
-        title: '2. Quantify biomass and carbon',
-        body: 'Estimate biomass production and carbon sequestration potential across landscapes using modelling methods aligned to AGBD-style tasks.',
+        title: '2. Model environmental systems',
+        body: 'Build geospatial models of landscapes, hazards, biodiversity, urban systems, carbon, and socio-ecological change.',
       },
       {
-        title: '3. Optimise future expansion',
-        body: 'Identify the best locations for new biomass crops while balancing carbon capture, biodiversity, soil health, and economic viability.',
+        title: '3. Support decisions',
+        body: 'Translate analysis into maps, indicators, tools, and evidence that can be inspected and reused.',
       },
     ],
   },
@@ -110,11 +110,11 @@ export const siteContent = {
   },
   outcome: {
     eyebrow: 'Final outcome',
-    title: 'Turn raw geospatial data into actionable decisions for UK decarbonisation',
+    title: 'Turn raw geospatial data into environmental intelligence',
     cards: [
-      'First high-resolution national map of energy crops',
-      'AI models linking environment to yield and carbon',
-      'A planning tool for sustainable biomass deployment',
+      'AI models for remote sensing interpretation',
+      'Spatial evidence for environmental and socio-ecological systems',
+      'Tools and maps for research, policy, and planning',
     ],
   },
   mission: {
@@ -128,7 +128,7 @@ export const siteContent = {
       step: 'Stage 1',
       title: 'Detection',
       summary:
-        'Identify biomass energy crop locations and candidate areas using imagery, terrain, and environmental context.',
+        'Identify environmental patterns, objects, and changes using imagery, terrain, and spatial context.',
       details:
         'This is the layer that finds what is already present. Replace the bullet points and labels here with your actual model inputs, training data, or study area names.',
       bullets: ['Sentinel-derived vegetation signals', 'Field boundary and land-cover cues', 'Editable model and dataset notes'],
@@ -137,7 +137,7 @@ export const siteContent = {
       step: 'Stage 2',
       title: 'Prediction',
       summary:
-        'Estimate future crop performance, seasonal response, and biomass growth under changing conditions.',
+        'Estimate environmental response, risk, condition, and change under different spatial or temporal settings.',
       details:
         'Use this section to describe your forecasting approach, whether it is machine learning, time-series modelling, or scenario-based prediction.',
       bullets: ['Yield trajectory modelling', 'Climate and soil covariates', 'Editable methodology summary'],
@@ -159,16 +159,16 @@ export const siteContent = {
   },
   estimator: {
     eyebrow: 'Live backend demo',
-    heading: 'Biomass potential estimator',
+    heading: 'Environmental potential estimator',
     text:
-      'Use this form to generate a score from the backend. It is a simple first interactive element that you can replace later with authentication, saved scenarios, map queries, or model outputs.',
+      'Use this form to generate a simple spatial potential score from the backend. It is a first interactive element that can later become a map query, scenario tool, or model output interface.',
     buttonLabel: 'Run estimate',
     resultTitle: 'Backend response',
     resultHint:
-      'This section is powered by a free serverless API route when deployed on Vercel. If the backend is unavailable, the page falls back to a local calculation so the demo still works.',
+      'This section is powered by a serverless API route when deployed on Vercel. If the backend is unavailable, the page falls back to a local calculation so the demo still works.',
   },
   footer: {
-    note: 'GeoAI biomass energy crops project | Environmental Intelligence Lab',
+    note: 'Environmental Intelligence Labs | University of Bristol',
     contact: 'Replace this with your email, lab page, or project link.',
   },
 } as const;

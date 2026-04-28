@@ -21,48 +21,48 @@ type ResearchProject = {
 
 const researchProjects: ResearchProject[] = [
   {
-    id: 'satellite-foundation-models',
+    id: 'remote-sensing-intelligence',
     label: 'Research 01',
-    title: 'Satellite foundation models for biomass estimation',
+    title: 'Remote sensing intelligent interpretation',
     summary:
-      'Using Earth observation embeddings and geospatial AI to predict, map, and monitor biomass across complex landscapes.',
-    focus: 'Satellite AI, biomass estimation, tropical forest monitoring, vegetation structure',
-    methods: 'Foundation model embeddings, remote sensing, geospatial machine learning, validation workflows',
-    applications: 'Biomass prediction, ecosystem monitoring, land system assessment',
-    outputs: ['Reusable model pipelines', 'Benchmark datasets', 'Maps of biomass and uncertainty'],
+      'Developing AI systems that interpret satellite, UAV, SAR, and other Earth observation data for real-time environmental understanding.',
+    focus: 'Remote sensing AI, image segmentation, classification, Earth observation interpretation',
+    methods: 'Deep learning, computer vision, transformers, foundation models, geospatial machine learning',
+    applications: 'Earth observation interpretation, urban scene analysis, land cover mapping, monitoring systems',
+    outputs: ['Remote sensing AI models', 'Image interpretation workflows', 'Maps and uncertainty layers'],
   },
   {
-    id: 'canopy-ecosystems',
+    id: 'biodiversity-ecosystems',
     label: 'Research 02',
-    title: 'Canopy structure, ecosystems, and land change',
+    title: 'Biodiversity, ecosystems, and landscape patterns',
     summary:
-      'Connecting spatial data with ecological structure to track forest condition, ecosystem change, and restoration potential.',
-    focus: 'Canopy structure, ecosystem condition, ecological monitoring',
-    methods: 'LiDAR-informed structure metrics, satellite time series, spatial statistics',
-    applications: 'Forest condition mapping, habitat assessment, restoration planning',
-    outputs: ['Condition indicators', 'Structure summaries', 'Spatial evidence for conservation'],
+      'Using spatial AI to study species, habitats, ecosystem condition, landscape processes, and environmental monitoring.',
+    focus: 'Biodiversity monitoring, landscape pattern, ecosystem condition, ecological processes',
+    methods: 'Satellite deep learning, UAV imagery, spatial statistics, landscape modelling',
+    applications: 'Animal population monitoring, plant mapping, habitat assessment, conservation evidence',
+    outputs: ['Biodiversity indicators', 'Ecosystem maps', 'Landscape process models'],
   },
   {
-    id: 'climate-sustainability',
+    id: 'hazards-urban-systems',
     label: 'Research 03',
-    title: 'GeoAI for climate and sustainability decisions',
+    title: 'Natural hazards, cities, and socio-ecological systems',
     summary:
-      'Building interpretable modelling workflows that support climate resilience, land management, and environmental policy.',
-    focus: 'Climate analytics, land systems, sustainability science',
-    methods: 'Predictive modelling, scenario analysis, reproducible spatial workflows',
-    applications: 'Climate risk analysis, planning support, policy evidence',
-    outputs: ['Decision-support layers', 'Scenario tools', 'Transparent modelling reports'],
+      'Building geospatial AI workflows for flood mapping, urban futures, green space, health, heat networks, and environmental risk.',
+    focus: 'Natural hazards, urban systems, green space, environmental risk, socio-ecological modelling',
+    methods: 'SAR analysis, street-view interpretation, predictive modelling, scenario analysis',
+    applications: 'Flood mapping, urban health, heat network planning, climate risk, planning support',
+    outputs: ['Risk maps', 'Urban indicators', 'Decision-support layers'],
   },
   {
-    id: 'interactive-science',
+    id: 'carbon-decarbonisation',
     label: 'Research 04',
-    title: 'Interactive scientific tools for environmental understanding',
+    title: 'Carbon, food security, and sustainable land systems',
     summary:
-      'Designing public-facing tools and research interfaces that make environmental data easier to explore and use.',
-    focus: 'Scientific communication, visual analytics, environmental interfaces',
-    methods: 'Web tools, human-centred design, lightweight APIs, visual storytelling',
-    applications: 'Public engagement, lab tools, exploratory research platforms',
-    outputs: ['Interactive maps', 'Open demos', 'Communication-ready figures'],
+      'Applying environmental data science to biomass, decarbonisation, food security, land use, and sustainable resource planning.',
+    focus: 'Biomass, carbon, food security, land systems, environmental decision support',
+    methods: 'Geospatial modelling, remote sensing, optimisation, spatial decision support',
+    applications: 'Sustainable biomass expansion, decarbonisation, food security, land management',
+    outputs: ['Carbon and biomass maps', 'Suitability models', 'Policy-facing evidence'],
   },
 ];
 
@@ -71,8 +71,8 @@ const leadInvestigator = {
   role: 'Senior Lecturer in Environmental Data Science',
   initials: 'CZ',
   imageUrl: ceZhangImage,
-  focus: 'Environmental data science, remote sensing, geospatial AI',
-  bio: 'Leads research on AI-driven geospatial and remote sensing methods for understanding complex environmental and socio-ecological systems.',
+  focus: 'AI, geospatial data science, remote sensing, and socio-ecological systems',
+  bio: 'Leads interdisciplinary research at the University of Bristol applying AI, machine learning, deep learning, geospatial data science, and remote sensing to environmental and socio-ecological challenges.',
   selectedWork: {
     title: 'UNetFormer',
     detail:
@@ -80,6 +80,32 @@ const leadInvestigator = {
     href: 'https://doi.org/10.1016/j.isprsjprs.2022.06.008',
   },
 };
+
+const leadProfileFacts = [
+  'Co-lead for Environmental Change Research at the Cabot Institute for the Environment',
+  'Fellow of the UK Centre for Ecology and Hydrology',
+  'Speciality Chief Editor in Frontiers in Remote Sensing',
+  'Accepting PhD students in geospatial science, AI, data science, computer science, and statistics',
+];
+
+const labThemes = [
+  {
+    title: 'AI and machine learning',
+    text: 'Deep learning, foundation models, computer vision, and interpretable AI for spatial environmental data.',
+  },
+  {
+    title: 'Geospatial modelling',
+    text: 'Spatial data mining, landscape pattern and process modelling, time series analysis, and uncertainty-aware mapping.',
+  },
+  {
+    title: 'Remote sensing intelligence',
+    text: 'Image segmentation, classification, synthetic aperture radar, UAV imagery, and real-time Earth observation interpretation.',
+  },
+  {
+    title: 'Environmental systems',
+    text: 'Biodiversity, natural hazards, urban futures, food security, biomass, freshwater monitoring, and socio-ecological change.',
+  },
+];
 
 const people = [
   {
@@ -152,34 +178,41 @@ const people = [
 
 const publications = [
   {
-    type: 'Selected outputs',
-    title: 'Foundation-model workflows for biomass and ecosystem monitoring',
+    type: 'Remote sensing AI',
+    title: 'Remote sensing intelligent interpretation brain: real-time intelligent understanding of the Earth',
     detail:
-      'A publication area for papers, preprints, reports, conference talks, and reproducible methods notes as the lab portfolio grows.',
-    meta: 'Papers, preprints, talks',
+      'A 2025 PNAS Nexus paper on real-time intelligent Earth observation interpretation and remote sensing AI systems.',
+    meta: 'PNAS Nexus, 2025',
   },
   {
-    type: 'Methods',
-    title: 'Remote sensing, GeoAI, and environmental data science',
+    type: 'Biodiversity monitoring',
+    title: 'Deep learning enables satellite-based monitoring of large terrestrial mammal populations',
     detail:
-      'A clean listing pattern for methods-led outputs, with enough structure for citations, links, datasets, and software releases.',
-    meta: 'Methods notes and code',
+      'A Nature Communications paper demonstrating satellite-based deep learning methods for monitoring animal populations across heterogeneous landscapes.',
+    meta: 'Nature Communications, 2023',
   },
   {
-    type: 'Evidence',
-    title: 'Environmental intelligence for decision support',
+    type: 'Ecological mapping',
+    title: 'Identifying and mapping individual plants using UAV imagery and deep learning',
     detail:
-      'A home for outputs aimed at collaborators, public agencies, land managers, and wider academic audiences.',
-    meta: 'Reports and briefings',
+      'An ISPRS Journal paper on individual plant detection in a high-elevation ecosystem using high-resolution UAV imagery and deep learning.',
+    meta: 'ISPRS JPRS, 2020',
+  },
+  {
+    type: 'Computer vision',
+    title: 'UNetFormer for efficient semantic segmentation of remote sensing urban scenes',
+    detail:
+      'Award-winning work on transformer-based semantic segmentation for remote sensing imagery and urban scene interpretation.',
+    meta: 'ISPRS JPRS, 2022',
   },
 ];
 
 const resources = [
   {
-    title: 'Biomass potential estimator',
+    title: 'Environmental potential estimator',
     label: 'Interactive demo',
     description:
-      'A lightweight scoring interface that demonstrates how future tools can connect user inputs, backend logic, and decision-ready outputs.',
+      'A lightweight scoring interface that demonstrates how future tools can connect spatial inputs, backend logic, and decision-ready outputs.',
   },
   {
     title: 'Research datasets',
@@ -214,10 +247,10 @@ const fieldNotes = [
 ];
 
 const researchMotifs = [
-  { icon: '01', title: 'Map change', text: 'Detect shifts in vegetation, forest condition, flood extent, and land use.' },
-  { icon: '02', title: 'Model carbon', text: 'Estimate biomass, canopy structure, uncertainty, and environmental potential.' },
-  { icon: '03', title: 'Explain systems', text: 'Translate complex spatial data into clear evidence for decisions.' },
-  { icon: '04', title: 'Build tools', text: 'Create interactive resources that make environmental data easier to use.' },
+  { icon: '01', title: 'Interpret Earth data', text: 'Turn satellite, UAV, SAR, and street-level imagery into reliable environmental evidence.' },
+  { icon: '02', title: 'Model systems', text: 'Analyse landscapes, hazards, biodiversity, urban environments, and land-use change.' },
+  { icon: '03', title: 'Connect disciplines', text: 'Bridge physical geography, human geography, ecology, computer science, and data science.' },
+  { icon: '04', title: 'Support decisions', text: 'Create maps, indicators, tools, and reports that help environmental decisions.' },
 ];
 
 function getRoute(): { page: PageName; researchId: string | null } {
@@ -313,8 +346,8 @@ function HomePage() {
           <p className="eyebrow">Environmental Intelligence Labs</p>
           <h1>Environmental intelligence for a changing planet.</h1>
           <p className="hero__lede">
-            We develop satellite AI, geospatial modelling, and environmental analytics to understand biomass,
-            ecosystems, and land change across space and time.
+            We develop AI, machine learning, remote sensing, and geospatial modelling to understand environmental
+            change across ecosystems, cities, hazards, biodiversity, and land systems.
           </p>
           <div className="button-row">
             <a className="button button--primary" href="#/research">
@@ -327,15 +360,15 @@ function HomePage() {
           <dl className="hero__metrics" aria-label="Lab summary">
             <div>
               <dt>GeoAI</dt>
-              <dd>Remote sensing and spatial machine learning</dd>
+              <dd>AI, deep learning, and geospatial data science</dd>
             </div>
             <div>
-              <dt>Biomass</dt>
-              <dd>Vegetation structure, carbon, and ecosystem condition</dd>
+              <dt>Earth Observation</dt>
+              <dd>Satellite, UAV, SAR, and street-level imagery</dd>
             </div>
             <div>
-              <dt>Impact</dt>
-              <dd>Decision-ready tools for environmental research</dd>
+              <dt>Systems</dt>
+              <dd>Biodiversity, hazards, cities, food security, and carbon</dd>
             </div>
           </dl>
         </div>
@@ -343,15 +376,15 @@ function HomePage() {
 
       <SectionIntro
         eyebrow="Lab Mission"
-        title="Research that turns Earth observation into environmental understanding."
-        text="The lab brings together remote sensing, machine learning, ecological knowledge, and clear scientific communication."
+        title="AI and geospatial data science for environmental understanding."
+        text="The lab builds methods that connect data-rich environmental observation with scientific explanation and practical decision support."
       />
 
       <section className="section section--flush">
         <div className="shell split-panel">
           <article className="statement-card">
             <p className="eyebrow">What We Do</p>
-            <h2>Build robust geospatial AI for climate and ecosystem questions.</h2>
+            <h2>Build robust environmental intelligence across places, scales, and data sources.</h2>
           </article>
           <div className="stacked-copy">
             <p>
@@ -371,12 +404,16 @@ function HomePage() {
         <div className="shell">
           <SectionHeader
             eyebrow="Research Themes"
-            title="A focused programme for environmental intelligence."
-            text="Each theme is designed to scale from technical research to public communication and practical use."
+            title="The lab is broader than one environmental application."
+            text="Biomass and carbon are part of the programme, alongside biodiversity monitoring, natural hazards, urban futures, food security, and remote sensing AI."
           />
           <div className="card-grid card-grid--three">
-            {researchProjects.slice(0, 3).map((project) => (
-              <ResearchSummaryCard key={project.id} project={project} />
+            {labThemes.map((theme) => (
+              <article className="content-card" key={theme.title}>
+                <span className="card-index">Theme</span>
+                <h3>{theme.title}</h3>
+                <p>{theme.text}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -387,7 +424,7 @@ function HomePage() {
           <SectionHeader
             eyebrow="Research Focus"
             title="A lab identity built around environmental evidence."
-            text="Remote sensing, field context, and open tools shape how the lab communicates its work."
+            text="The research portfolio spans methods, environmental applications, and tools for interpreting complex spatial systems."
           />
           <div className="motif-grid">
             {researchMotifs.map((motif) => (
@@ -432,7 +469,7 @@ function PeoplePage() {
     <PageShell
       eyebrow="People"
       title="A multidisciplinary lab working across AI, ecology, and spatial data."
-      intro="The team combines environmental data science, remote sensing, machine learning, and applied domain expertise."
+      intro="The team combines environmental data science, remote sensing, machine learning, ecology, urban analysis, hazards, and applied domain expertise."
     >
       <section className="leader-panel">
         <div className="leader-panel__portrait">
@@ -451,6 +488,11 @@ function PeoplePage() {
           <p className="person-card__role">{leadInvestigator.role}</p>
           <p className="person-card__focus">{leadInvestigator.focus}</p>
           <p>{leadInvestigator.bio}</p>
+          <ul className="leader-panel__facts">
+            {leadProfileFacts.map((fact) => (
+              <li key={fact}>{fact}</li>
+            ))}
+          </ul>
           <SelectedWork work={leadInvestigator.selectedWork} />
         </div>
       </section>
@@ -487,8 +529,8 @@ function ResearchPage() {
   return (
     <PageShell
       eyebrow="Research"
-      title="Core research directions built around Earth data and environmental decisions."
-      intro="The lab develops computational methods that connect rich spatial data with urgent environmental questions."
+      title="Core research directions across environmental data science."
+      intro="The lab develops computational methods that connect spatial data with environmental, ecological, urban, and socio-ecological questions."
     >
       <section className="research-overview">
         <article className="statement-card">
@@ -498,7 +540,8 @@ function ResearchPage() {
         <div className="detail-list">
           <div>
             <span>Inputs</span>
-            Satellite imagery, LiDAR, environmental covariates, field observations, and spatial context.
+            Satellite imagery, UAV imagery, SAR, LiDAR, street-view data, environmental covariates, field observations,
+            and spatial context.
           </div>
           <div>
             <span>Methods</span>
@@ -507,7 +550,7 @@ function ResearchPage() {
           </div>
           <div>
             <span>Outputs</span>
-            Maps, uncertainty estimates, open tools, publications, and environmental decision support.
+            Maps, uncertainty estimates, image interpretation systems, open tools, publications, and decision support.
           </div>
         </div>
       </section>
